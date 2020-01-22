@@ -1,5 +1,5 @@
 # ndnu-connect
 tutor match 
 
-contrubitors 
+Contributors: 
 Mark 
