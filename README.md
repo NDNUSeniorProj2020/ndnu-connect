@@ -1,5 +1,5 @@
-# ndnu-connect
-tutor match 
+# Ndnu-Connect 
 
 Contributors: 
-Mark 
+Mark Falcone
+Praveen Vandeyar
