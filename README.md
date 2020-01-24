@@ -1,6 +1,7 @@
 # ndnu-connect
-tutor match 
+## Tutor Match
 
-Contributors: 
-Mark 
-Matt
+### Contributors: 
+Mark Falcone
+Matt Danielle
+Jonathon Chenvert
