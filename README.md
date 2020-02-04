@@ -1,6 +1,7 @@
-# Ndnu-Connect 
+# NDNU-Connect 
 
-Contributors: 
+### Contributors: 
+
 Mark Falcone
 Matt Danielle
 Jonathon Chenvert
