@@ -1,7 +1,8 @@
-# ndnu-connect
-## Tutor Match
+# NDNU-Connect 
 
 ### Contributors: 
+
 Mark Falcone
 Matt Danielle
 Jonathon Chenvert
+Praveen Vandeyar
