@@ -87,3 +87,4 @@ class Student(models.Model):
 
     def __str__(self):
         return self.major + " " + self.pay
+    
