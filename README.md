@@ -2,9 +2,9 @@
 
 ### Contributors: 
 
-Mark Falcone
-Matt Danielle
-Jonathon Chenvert
-Praveen Vandeyar
+Mark Falcone <br/>
+Matt Danielle <br/>
+Jonathon Chenvert <br/>
+Praveen Vandeyar <br/>
 Leo Samuelson
 
