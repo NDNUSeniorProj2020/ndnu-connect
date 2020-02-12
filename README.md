@@ -1,10 +1,14 @@
 # NDNU-Connect 
 
+## Tutor Match
+This application will match students and tutors with one another.
+
 ### Contributors: 
 
-Mark Falcone <br/>
-Matt Danielle <br/>
-Jonathon Chenvert <br/>
-Praveen Vandeyar <br/>
-Leo Samuelson
+* Mark Falcone
+* Matt Danielle
+* Jonathon Chenvert
+* Praveen Vandeyar
+* Leo Samuelson
+
 
