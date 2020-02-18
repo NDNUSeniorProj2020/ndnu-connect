@@ -1,3 +1,6 @@
+#ENV#
+ndnu-connect-backend/backendEnv
+
 # Django #
 *.log
 *.pot
