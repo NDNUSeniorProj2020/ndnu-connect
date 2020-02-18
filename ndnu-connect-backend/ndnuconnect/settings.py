@@ -25,7 +25,7 @@ SECRET_KEY = '@sv+-t4(tbj)-!rwzbj1%)8golr811u1$01^^4k*)n1f^)g72u'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ndnuconnect.us.sysb.ai','127.0.0.1','localhost']
 
 
 # Application definition

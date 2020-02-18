@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from tutor_match.models import Department,Subject,Schedule,TuitionMethod,TuitionLocation,Tutor,Student
-from rest_framework.viewsets import ModelViewSet
+from tutor_match.models import Department,Subject,Schedule, Tutor,Student
+
 
 class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
