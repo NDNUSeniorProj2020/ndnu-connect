@@ -145,5 +145,5 @@ REST_FRAMEWORK = {
 
 # JSON Web Token (JWT) Authentication
 JWT_AUTH = {
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'ndnu-connect-backend.utils.my_jwt_response_handler'
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'ndnuconnect.utils.my_jwt_response_handler'
 }
