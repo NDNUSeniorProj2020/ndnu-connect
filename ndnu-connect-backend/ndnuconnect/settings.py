@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'tutor_match',
     'accounts',
+    'job_find',
 ]
 
 MIDDLEWARE = [
