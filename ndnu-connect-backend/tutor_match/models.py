@@ -13,6 +13,7 @@ class Department(models.Model):
     def __str__(self):
         return self.name
 
+
 class Subject(models.Model):
     subject = models.TextField(max_length=20, blank=True)
     semester = models.TextField(max_length=10, blank=True)
@@ -46,6 +47,7 @@ class TuitionMethod(models.IntegerChoices):
     GROUP = 2, 'Group'
     EITHER = 3, 'Either'
 
+
 class TuitionLocation(models.IntegerChoices):
     SCHOOL = 1, 'School'
     ANYWHERE = 2, 'Anywhere'
@@ -61,7 +63,9 @@ class Tutor(models.Model):
     location = models.IntegerField(choices=TuitionLocation.choices, null=True)
     description = models.TextField(max_length=30, blank=True)
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, null=True)
-    #user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.FloatField(null=True)
+    num_of_ratings = models.FloatField(default=0)
+    person = models.ForeignKey('accounts.person', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.subject + " " + self.pay
@@ -83,8 +87,7 @@ class Student(models.Model):
     location = models.IntegerField(choices=TuitionLocation.choices, null=True)
     description = models.TextField(max_length=30, blank=True)
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, null=True)
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
+    person = models.ForeignKey('accounts.person', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.major + " " + self.pay
-    
