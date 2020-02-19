@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'tutor_match',
     'accounts',
+    'job_find',
 ]
 
 MIDDLEWARE = [
