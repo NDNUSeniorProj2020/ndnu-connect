@@ -25,7 +25,7 @@ SECRET_KEY = '@sv+-t4(tbj)-!rwzbj1%)8golr811u1$01^^4k*)n1f^)g72u'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ndnuconnect.us.sysb.ai','127.0.0.1','localhost']
 
 
 # Application definition
@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'rest_framework',
     'tutor_match',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +57,7 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
-    'http://localhost:8000'
+    'http://localhost:8000',
 ]
 
 ROOT_URLCONF = 'ndnuconnect.urls'
@@ -127,3 +129,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Rest Framework
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+
+# JSON Web Token (JWT) Authentication
+JWT_AUTH = {
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'ndnuconnect.utils.my_jwt_response_handler'
+}
