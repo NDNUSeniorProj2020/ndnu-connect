@@ -1,11 +1,12 @@
 from rest_framework import serializers
-from tutor_match.models import Department,Subject,Schedule, Tutor,Student
+from .models import Department, Subject, Schedule, Tutor, Student
 
 
 class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Department
         fields = ['name']
+
 
 class SubjectSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -32,7 +33,9 @@ class ScheduleSerializer(serializers.HyperlinkedModelSerializer):
 class TutorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Tutor
-        fields = ['pay','subject','credentials','method','location','description','schedule']
+        fields = ['pay', 'subject', 'credentials', 'method',
+                  'location', 'description', 'schedule',
+                  'rating', 'num_of_ratings', 'person']
 
 
 class StudentSerializer(serializers.HyperlinkedModelSerializer):

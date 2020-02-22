@@ -29,7 +29,7 @@ class SubjToDept(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.department + " " + self.subject
+        return self.department.name + " - " + self.subject.subject
 
 
 class Schedule(models.Model):
