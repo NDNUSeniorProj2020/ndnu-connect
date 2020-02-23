@@ -1,21 +1,19 @@
 from django.db import models
-from django.contrib.auth.models import User
-
-
-class Alumni(models.Model):
-    graduated = models.IntegerField(null=True)
-    major = models.CharField(max_length=20)
-    company = models.CharField(max_length=20)
-    job_title = models.CharField(max_length=20)
-    about = models.TextField(null=True)
 
 
 class Person(models.Model):
-    user = models.ForeignKey(User, unique=True, null=True, on_delete=models.CASCADE)
-    alumni = models.ForeignKey(Alumni, null=True, on_delete=models.CASCADE)
+    person_name = models.CharField(max_length=30, null=True)
+    username = models.CharField(max_length=20, null=True)
+    email = models.EmailField(max_length=30, null=True)
+    password = models.CharField(max_length=30, null=True)
+    graduated = models.IntegerField(null=True)
+    major = models.CharField(max_length=20, null=True)
+    company = models.CharField(max_length=20, null=True)
+    job_title = models.CharField(max_length=20, null=True)
+    about = models.TextField(null=True)
 
     def __str__(self):
-        return self.user.name
+        return self.person_name
 
 
 

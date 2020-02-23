@@ -33,13 +33,13 @@ class SubjToDept(models.Model):
 
 
 class Schedule(models.Model):
-    monday = models.TextField(max_length=30, blank=True)
-    tuesday = models.TextField(max_length=30, blank=True)
-    wednesday = models.TextField(max_length=30, blank=True)
-    thursday = models.TextField(max_length=30, blank=True)
-    friday = models.TextField(max_length=30, blank=True)
-    saturday = models.TextField(max_length=30, blank=True)
-    sunday = models.TextField(max_length=30, blank=True)
+    monday = models.CharField(max_length=20, blank=True)
+    tuesday = models.CharField(max_length=20, blank=True)
+    wednesday = models.CharField(max_length=20, blank=True)
+    thursday = models.CharField(max_length=20, blank=True)
+    friday = models.CharField(max_length=20, blank=True)
+    saturday = models.CharField(max_length=20, blank=True)
+    sunday = models.CharField(max_length=20, blank=True)
 
 
 class TuitionMethod(models.IntegerChoices):
