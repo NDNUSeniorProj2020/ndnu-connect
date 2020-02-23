@@ -7,7 +7,6 @@ from .models import Subject
 from .models import Schedule
 from .models import SubjToDept
 
-
 # Register your models here.
 admin.site.register(Tutor)
 admin.site.register(Student)
