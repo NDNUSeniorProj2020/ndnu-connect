@@ -1,5 +1,12 @@
 from django.contrib import admin
-from .models import person
+from django.contrib.auth.admin import UserAdmin
+from .models import Person
 
-# Register your models here.
-admin.site.register(person)
+
+class PersonAdmin(UserAdmin):
+    fieldsets = UserAdmin.fieldsets + (
+            (None, {'fields': ('graduated', 'major', 'company', 'job_title', 'about',)}),
+    )
+
+
+admin.site.register(Person, PersonAdmin)
