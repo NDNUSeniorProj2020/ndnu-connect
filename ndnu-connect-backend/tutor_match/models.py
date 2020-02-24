@@ -6,6 +6,7 @@ class Department(models.Model):
     class DepartmentNames(models.TextChoices):
         ACCOUNTING = 'ACC', 'Accounting'
         BUSINESS_ADMINISTRATION = 'BUS', 'Business Administration'
+        MATH = 'MTH', 'Math'
         #More, maybe with BA, BS, MA, MS declarations
 
     name = models.CharField(choices=DepartmentNames.choices, max_length=3, null=True)
@@ -29,7 +30,7 @@ class SubjToDept(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.department + " " + self.subject
+        return self.department.name + " " + self.subject.subject
 
 
 class Schedule(models.Model):
