@@ -9,10 +9,12 @@ class Person(AbstractUser):
     job_title = models.CharField(max_length=20, null=True, blank=True)
     about = models.TextField(null=True, blank=True)
 
+    def create_user(self, username, password):
+        self.username=username
+        self.password=password
+        self.save()
+        return self
+
+
     def __str__(self):
         return self.username
-
-
-
-
-
