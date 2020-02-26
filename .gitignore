@@ -1,5 +1,6 @@
 #ENV#
 ndnu-connect-backend/backendEnv
+ndnu-connect-backend/sendenv
 
 # Django #
 *.log
