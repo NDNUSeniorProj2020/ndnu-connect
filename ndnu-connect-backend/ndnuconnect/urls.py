@@ -29,5 +29,6 @@ urlpatterns = [
     path('tutoring/', include('tutor_match.urls')),
     path('accounts/', include('accounts.urls')),
     path('api/', include('tutor_match.urls')),
+    path('', include('auth0authorization.urls'))
 
 ]

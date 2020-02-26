@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+
+
+# apiexample/settings.py
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -54,6 +58,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.RemoteUserMiddleware',
+
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'django.contrib.auth.backends.RemoteUserBackend',
 ]
 
 CORS_ORIGIN_WHITELIST = [
@@ -143,7 +154,13 @@ REST_FRAMEWORK = {
     ),
 }
 
-# JSON Web Token (JWT) Authentication
-JWT_AUTH = {
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'ndnuconnect.utils.my_jwt_response_handler'
-}
+
+
+import textwrap
+
+jsonurl = request.urlopen("https://ndnu-connect.auth0.com/.well-known/jwks.json")
+jwks = json.loads(jsonurl.read())
+cert = '-----BEGIN CERTIFICATE-----\n' + textwrap.fill(jwks['keys'][0]['x5c'][0], 64) + '\n-----END CERTIFICATE-----'
+
+certificate = load_pem_x509_certificate(str.encode(cert), default_backend())
+publickey = certificate.public_key()
