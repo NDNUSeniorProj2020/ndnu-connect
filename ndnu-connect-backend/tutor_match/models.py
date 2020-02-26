@@ -6,6 +6,7 @@ class Department(models.Model):
     class DepartmentNames(models.TextChoices):
         ACCOUNTING = 'ACC', 'Accounting'
         BUSINESS_ADMINISTRATION = 'BUS', 'Business Administration'
+        MATH = 'MTH', 'Math'
         #More, maybe with BA, BS, MA, MS declarations
 
     name = models.CharField(choices=DepartmentNames.choices, max_length=3, null=True)
@@ -33,13 +34,13 @@ class SubjToDept(models.Model):
 
 
 class Schedule(models.Model):
-    monday = models.TextField(max_length=30, blank=True)
-    tuesday = models.TextField(max_length=30, blank=True)
-    wednesday = models.TextField(max_length=30, blank=True)
-    thursday = models.TextField(max_length=30, blank=True)
-    friday = models.TextField(max_length=30, blank=True)
-    saturday = models.TextField(max_length=30, blank=True)
-    sunday = models.TextField(max_length=30, blank=True)
+    monday = models.CharField(max_length=20, blank=True)
+    tuesday = models.CharField(max_length=20, blank=True)
+    wednesday = models.CharField(max_length=20, blank=True)
+    thursday = models.CharField(max_length=20, blank=True)
+    friday = models.CharField(max_length=20, blank=True)
+    saturday = models.CharField(max_length=20, blank=True)
+    sunday = models.CharField(max_length=20, blank=True)
 
 
 class TuitionMethod(models.IntegerChoices):
@@ -65,7 +66,7 @@ class Tutor(models.Model):
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, null=True)
     rating = models.FloatField(null=True)
     num_of_ratings = models.FloatField(default=0)
-    person = models.ForeignKey('accounts.person', on_delete=models.CASCADE, null=True)
+    person = models.ForeignKey('accounts.Person', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.subject.subject + " " + str(self.pay)
@@ -87,7 +88,7 @@ class Student(models.Model):
     location = models.IntegerField(choices=TuitionLocation.choices, null=True)
     description = models.TextField(max_length=30, blank=True)
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, null=True)
-    person = models.ForeignKey('accounts.person', on_delete=models.CASCADE, null=True)
+    person = models.ForeignKey('accounts.Person', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.major.name + " " + str(self.pay)

@@ -147,3 +147,5 @@ REST_FRAMEWORK = {
 JWT_AUTH = {
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'ndnuconnect.utils.my_jwt_response_handler'
 }
+
+AUTH_USER_MODEL = "accounts.Person"
