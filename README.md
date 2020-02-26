@@ -10,5 +10,8 @@ This application will match students and tutors with one another.
 * Jonathon Chenvert
 * Praveen Vandeyar
 * Leo Samuelson
+* Jose Alvarez Avina
+* Ervin Elias
+* Raul Flores
 
 
