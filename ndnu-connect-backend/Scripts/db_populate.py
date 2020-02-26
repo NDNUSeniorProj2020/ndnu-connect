@@ -1,6 +1,10 @@
 import os, sys
 
-sys.path.append('/Users/markfalcone/git/ndnu-connect/ndnu-connect-backend')
+#sys.path.append('/Users/markfalcon/git/ndnu-connect/ndnu-connect-backend')
+
+base_dir = os.getcwd()
+
+sys.path.append(base_dir)
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'ndnuconnect.settings'
 
@@ -8,38 +12,34 @@ import django
 django.setup()
 
 #  creating a user
-# from accounts.models import person
-# from django.contrib.auth.models import person
-# testPerson=person.user.create_user('foo', password='testPassword123')
-# testPerson.save()
-# person1 = person.first_name ="andpioe"
-# username = "scriptuser",person.user.password = "testPassword123" , person.user.first_name= 'first'
-
+from accounts.models import Person
+userCreate = Person()
+user = userCreate.create_user('testUser', 'UserPassword')
 
 
 
 
 from tutor_match.models import Department, Subject, Tutor ,Schedule
 # filling in the department
-d = Department(name='BUS')
-d2 = Department(name='MTH')
-d.save()
-d2.save()
+addDepartment = Department(name='BUS')
+addDepartment2 = Department(name='MTH')
+addDepartment.save()
+addDepartment2.save()
 
 
 
 # filing in the Subject
-s = Subject(subject='Business', semester='Spr2020', course_number='2215')
-s2 = Subject(subject='Algebra', semester='win2020', course_number='1234')
-s.save()
-s2.save()
+addSubject = Subject(subject='Business', semester='Spr2020', course_number='2215')
+addSubject2 = Subject(subject='Algebra', semester='win2020', course_number='1234')
+addSubject.save()
+addSubject2.save()
 
 
-
-
+scedule1 = Schedule(monday="no", tuesday="1-2", wednesday="no", thursday="3-4",
+friday="5-6", saturday="no", sunday="no")
+scedule1.save()
 
 #fill in the tutor
-# t1 = Tutor(pay=134.1, subject=s, credentials="I have a degree",
-# method=1, location= 2, description ="im a nice person", schedule =Schedule(monday = "12-2", tuesday = " r", wednesday="d", thursday="", friday="d", saturday="d", sunday="d"), rating=1,
-# num_of_ratings=2, person= 'testPerson' )
-# t1.save()
+addTutor = Tutor(pay=134.1, subject=addSubject, credentials="I have a degree",
+method=1, location= 2, description ="im a nice person", schedule = scedule1, person = user)
+addTutor.save()
