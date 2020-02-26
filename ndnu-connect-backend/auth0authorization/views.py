@@ -1,13 +1,15 @@
-from django.shortcuts import render
-# auth0authorization/views.py
-
-from functools import wraps
 import jwt
+from functools import wraps
 
 from django.http import JsonResponse
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+
+# Create your views here.
+
 
 def get_token_auth_header(request):
-    """Obtains the Access Token from the Authorization Header
+    """Obtains the access token from the Authorization Header
     """
     auth = request.META.get("HTTP_AUTHORIZATION", None)
     parts = auth.split()
@@ -15,8 +17,9 @@ def get_token_auth_header(request):
 
     return token
 
+
 def requires_scope(required_scope):
-    """Determines if the required scope is present in the Access Token
+    """Determines if the required scope is present in the access token
     Args:
         required_scope (str): The scope required to access the resource
     """
@@ -37,12 +40,6 @@ def requires_scope(required_scope):
     return require_scope
 
 
-
-# Create your views here.
-from django.http import JsonResponse
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
-
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def public(request):
@@ -53,9 +50,8 @@ def public(request):
 def private(request):
     return JsonResponse({'message': 'Hello from a private endpoint! You need to be authenticated to see this.'})
 
-# auth0authorization/views.py
 
 @api_view(['GET'])
 @requires_scope('read:messages')
 def private_scoped(request):
-    return JsonResponse({'message': 'Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this.')
+    return JsonResponse({'message': 'Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this.'})

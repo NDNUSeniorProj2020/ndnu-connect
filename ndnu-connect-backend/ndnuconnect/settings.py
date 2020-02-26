@@ -156,11 +156,20 @@ REST_FRAMEWORK = {
 
 
 
-import textwrap
+AUTH0_DOMAIN = 'ndnu-connect.auth0.com'
+API_IDENTIFIER = 'https://ndnuconnect.us.sysb.ai/api'
+API_IDENTIFIER_LOCAL = 'https://localhost/api'
 
-jsonurl = request.urlopen("https://ndnu-connect.auth0.com/.well-known/jwks.json")
-jwks = json.loads(jsonurl.read())
-cert = '-----BEGIN CERTIFICATE-----\n' + textwrap.fill(jwks['keys'][0]['x5c'][0], 64) + '\n-----END CERTIFICATE-----'
+if AUTH0_DOMAIN:
+    JWT_ISSUER = 'https://' + AUTH0_DOMAIN + '/'
 
-certificate = load_pem_x509_certificate(str.encode(cert), default_backend())
-publickey = certificate.public_key()
+JWT_AUTH = {
+    'JWT_PAYLOAD_GET_USERNAME_HANDLER':
+        'auth0authorization.utils.jwt_get_username_from_payload_handler',
+    'JWT_DECODE_HANDLER':
+        'auth0authorization.utils.jwt_decode_token',
+    'JWT_ALGORITHM': 'RS256',
+    'JWT_AUDIENCE': 'API_IDENTIFIER',
+    'JWT_ISSUER': 'https://ndnu-connect.auth0.com/',
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
+}
