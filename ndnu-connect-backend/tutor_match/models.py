@@ -5,9 +5,29 @@ class Department(models.Model):
 
     class DepartmentNames(models.TextChoices):
         ACCOUNTING = 'ACC', 'Accounting'
+        ART = 'ART', 'Art'
+        ART_THERAPY = 'GPY', 'Art Therapy'
+        BIOLOGY = 'BIO', 'Biology'
         BUSINESS_ADMINISTRATION = 'BUS', 'Business Administration'
-        MATH = 'MTH', 'Math'
-        #More, maybe with BA, BS, MA, MS declarations
+        CHEMISTRY = 'CHE', 'Chemistry'
+        CLINICAL_PSYCHOLOGY = 'CPY', 'Clinical Psychology'
+        COMMUNICATION = 'COM', 'Communication'
+        COMPUTER_SCIENCE = 'CSC', 'Computer Science'
+        EDUCATION = 'EDU', 'Education'
+        ENGLISH = 'ENG', 'English'
+        ESL = 'TSL', 'English as a Second Language'
+        HEALTH_SCIENCES = 'HSC', 'Health Sciences'
+        HISTORY = 'HST', 'History'
+        HUMAN_SERVICES = 'HSP', 'Human Services'
+        KINESIOLOGY = 'KIN', 'Kinesiology'
+        LIBERAL_STUDIES = '', 'Liberal Studies'
+        MATHEMATICS = 'MTH', 'Mathematics'
+        PHILOSOPHY = 'PHL', 'Philosophy'
+        POLITICAL_SCIENCE = 'PSC', 'Political Science'
+        PSYCHOLOGY = 'PSY', 'Psychology'
+        RELIGIOUS_STUDIES = 'REL', 'Religious Studies'
+        SOCIOLOGY = 'SOC', 'Sociology'
+        SPANISH_STUDIES = 'SPA', 'Spanish Studies'
 
     name = models.CharField(choices=DepartmentNames.choices, max_length=3, null=True)
 
@@ -19,7 +39,6 @@ class Subject(models.Model):
     subject = models.TextField(max_length=20, blank=True)
     semester = models.TextField(max_length=10, blank=True)
     course_number = models.TextField(max_length=10, blank=True)
-    #notes
 
     def __str__(self):
         return self.subject
