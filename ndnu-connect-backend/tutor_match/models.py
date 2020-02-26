@@ -30,7 +30,7 @@ class SubjToDept(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.department.name + " " + self.subject.subject
+        return self.department.name + " - " + self.subject.subject
 
 
 class Schedule(models.Model):
@@ -69,7 +69,7 @@ class Tutor(models.Model):
     person = models.ForeignKey('accounts.Person', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return self.subject + " " + self.pay
+        return self.subject.subject + " " + str(self.pay)
 
 
 class Student(models.Model):
@@ -91,4 +91,4 @@ class Student(models.Model):
     person = models.ForeignKey('accounts.Person', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return self.major + " " + self.pay
+        return self.major.name + " " + str(self.pay)
