@@ -11,24 +11,15 @@ class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
 class SubjectSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Subject
-        fields = ['subject','semester','course_number']
+        fields = ['subject', 'semester', 'course_number']
 
 
 class ScheduleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Schedule
-        fields = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday']
+        fields = ['monday', 'tuesday', 'wednesday',
+                  'thursday', 'friday', 'saturday', 'sunday']
 
-
-# class TuitionMethodSerializer(serializers.HyperlinkedModelSerializer):
-#     class Meta:
-#         model = TuitionMethod
-#         fields = []
-#
-# class TuitionLocationSerializer(serializers.HyperlinkedModelSerializer):
-#     class Meta:
-#         model = TuitionLocation
-#         fields = []
 
 class TutorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -41,4 +32,5 @@ class TutorSerializer(serializers.HyperlinkedModelSerializer):
 class StudentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Student
-        fields = ['YearInSchool','major','pay','standing','method','location','description','schedule']
+        fields = ['major', 'pay', 'standing', 'method',
+                  'location', 'description', 'schedule', 'person']

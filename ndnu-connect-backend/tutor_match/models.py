@@ -68,7 +68,7 @@ class Tutor(models.Model):
     person = models.ForeignKey('accounts.person', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return self.subject + " " + self.pay
+        return self.subject.subject + " " + str(self.pay)
 
 
 class Student(models.Model):
@@ -90,4 +90,4 @@ class Student(models.Model):
     person = models.ForeignKey('accounts.person', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return self.major + " " + self.pay
+        return self.major.name + " " + str(self.pay)
