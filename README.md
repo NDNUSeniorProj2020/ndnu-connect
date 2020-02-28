@@ -43,5 +43,8 @@ directory in the `Terminal`, then go ahead and run the following commands:
 * Jonathon Chenvert
 * Praveen Vandeyar
 * Leo Samuelson
+* Jose Alvarez Avina
+* Ervin Elias
+* Raul Flores
 
 
