@@ -12,7 +12,7 @@ django.setup()
 # User model
 from accounts.models import Person
 userCreate = Person()
-user = userCreate.create_user('testUser', 'UserPassword')
+user = userCreate.create_user('testUser', 'UserPassword1')
 
 # Tutor model
 from tutor_match.models import Department, Subject, Tutor, Schedule
@@ -50,3 +50,11 @@ addTutor = Tutor(pay=134.1,
 addTutor.save()
 
 # Creates a student
+
+
+
+# adds jobs
+from job_find.models import Job
+jobTest = Job(title = "test1", description = "description test",
+    qualifications="bs degree", pay="1234", link="google.com", person=user, type= 'FULL')
+jobTest.save()
