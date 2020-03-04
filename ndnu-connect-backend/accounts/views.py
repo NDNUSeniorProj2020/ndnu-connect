@@ -6,7 +6,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .serializers import UserSerializer, UserSerializerWithToken, RegistrationSerializer
+from .serializers import UserSerializer, UserSerializerWithToken, RegistrationSerializer, LoginSerializer
+from .renderers import UserJSONRenderer
 
 
 @api_view(['GET'])
@@ -18,6 +19,7 @@ def current_user(request):
 
 class RegistrationAPIView(APIView):
     permission_classes = (permissions.AllowAny,)
+    renderer_classes = (UserJSONRenderer,)
     serializer_class = RegistrationSerializer
 
     def post(self, req):
@@ -30,6 +32,18 @@ class RegistrationAPIView(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+class LoginAPIView(APIView):
+    permission_classes = (permissions.AllowAny,)
+    renderer_classes = (UserJSONRenderer,)
+    serializer_class = LoginSerializer
+
+    def post(self, req):
+        data = req.data.get('user', {})
+        serializer = self.serializer_class(data=data)
+        serializer.is_valid(raise_exception=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class UserList(APIView):

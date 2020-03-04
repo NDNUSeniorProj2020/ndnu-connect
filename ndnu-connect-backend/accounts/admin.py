@@ -5,9 +5,7 @@ from .models import Person, User
 
 class UserAdmin(BaseUserAdmin):
     model = User
-    list_display = ()
     list_filter = ()
-    search_fields = ()
     ordering = ()
     filter_horizontal = ()
     add_fieldsets = (

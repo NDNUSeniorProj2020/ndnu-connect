@@ -1,9 +1,39 @@
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
+from django.contrib.auth import authenticate
 
 #from django.contrib.auth.models import User
 
 from .models import User
+
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.CharField(max_length=255)
+    password = serializers.CharField(max_length=128, write_only=True)
+    token = serializers.CharField(max_length=255, read_only=True)
+
+    def validate(self, data):
+        email = data.get('email', None)
+        password = data.get('password', None)
+
+        if email is None:
+            raise serializers.ValidationError('An email address is required to log in.')
+
+        if password is None:
+            raise serializers.ValidationError('A password is required to log in.')
+
+        user = authenticate(username=email, password=password)
+
+        if not user:
+            raise serializers.ValidationError('User does not exist.')
+
+        return {
+            'email': user.email,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'phone_number': user.phone_number,
+            'token': user.token
+        }
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
