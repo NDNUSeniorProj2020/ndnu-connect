@@ -26,11 +26,11 @@ class TutorSerializer(serializers.HyperlinkedModelSerializer):
         model = Tutor
         fields = ['pay', 'subject', 'credentials', 'method',
                   'location', 'description', 'schedule',
-                  'rating', 'num_of_ratings', 'person']
+                  'rating', 'num_of_ratings']
 
 
 class StudentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Student
         fields = ['major', 'pay', 'standing', 'method',
-                  'location', 'description', 'schedule', 'person']
+                  'location', 'description', 'schedule']

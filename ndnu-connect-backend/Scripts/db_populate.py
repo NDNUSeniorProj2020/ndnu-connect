@@ -1,9 +1,7 @@
-import os, sys
-
-#sys.path.append('/Users/markfalcon/git/ndnu-connect/ndnu-connect-backend')
+import os
+import sys
 
 base_dir = os.getcwd()
-
 sys.path.append(base_dir)
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'ndnuconnect.settings'
@@ -11,35 +9,52 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'ndnuconnect.settings'
 import django
 django.setup()
 
-#  creating a user
+# User model
 from accounts.models import Person
 userCreate = Person()
-user = userCreate.create_user('testUser', 'UserPassword')
+user = userCreate.create_user('testUser', 'UserPassword1')
 
-
-
-
-from tutor_match.models import Department, Subject, Tutor ,Schedule
-# filling in the department
+# Tutor model
+from tutor_match.models import Department, Subject, Tutor, Schedule
+# Creates departments
 addDepartment = Department(name='BUS')
 addDepartment2 = Department(name='MTH')
 addDepartment.save()
 addDepartment2.save()
 
-
-
-# filing in the Subject
+# Creates subjects
 addSubject = Subject(subject='Business', semester='Spr2020', course_number='2215')
 addSubject2 = Subject(subject='Algebra', semester='win2020', course_number='1234')
 addSubject.save()
 addSubject2.save()
 
+# Creates a schedule
+schedule1 = Schedule(monday="no",
+                     tuesday="1-2",
+                     wednesday="no",
+                     thursday="3-4",
+                     friday="5-6",
+                     saturday="no",
+                     sunday="no")
+schedule1.save()
 
-scedule1 = Schedule(monday="no", tuesday="1-2", wednesday="no", thursday="3-4",
-friday="5-6", saturday="no", sunday="no")
-scedule1.save()
-
-#fill in the tutor
-addTutor = Tutor(pay=134.1, subject=addSubject, credentials="I have a degree",
-method=1, location= 2, description ="im a nice person", schedule = scedule1, person = user)
+# Creates a tutor
+addTutor = Tutor(pay=134.1,
+                 subject=addSubject,
+                 credentials="I have a degree",
+                 method=1,
+                 location=2,
+                 description="im a nice person",
+                 schedule=schedule1,
+                 person=user)
 addTutor.save()
+
+# Creates a student
+
+
+
+# adds jobs
+from job_find.models import Job
+jobTest = Job(title = "test1", description = "description test",
+    qualifications="bs degree", pay="1234", link="google.com", person=user, type= 'FULL')
+jobTest.save()
