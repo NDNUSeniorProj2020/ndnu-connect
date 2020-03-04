@@ -1,6 +1,5 @@
 import os, sys
-
-#sys.path.append('/Users/markfalcon/git/ndnu-connect/ndnu-connect-backend')
+######## ******** THIS IS A SCRIPT TO POPULATE DB ******** ########
 
 base_dir = os.getcwd()
 
@@ -17,7 +16,7 @@ userCreate = Person()
 user = userCreate.create_user('testUser', 'UserPassword')
 
 
-
+######## ******** FILING IN THE TUTOR_MATCH MODELS ******** ########
 
 from tutor_match.models import Department, Subject, Tutor ,Schedule
 # filling in the department
@@ -43,3 +42,6 @@ scedule1.save()
 addTutor = Tutor(pay=134.1, subject=addSubject, credentials="I have a degree",
 method=1, location= 2, description ="im a nice person", schedule = scedule1, person = user)
 addTutor.save()
+
+
+######## ******** FILLING IN THE JOB_FIND MODELS ******** ########
