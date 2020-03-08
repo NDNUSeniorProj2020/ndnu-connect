@@ -5,16 +5,17 @@ from .models import Person, User
 
 class UserAdmin(BaseUserAdmin):
     model = User
-    list_filter = ()
-    ordering = ()
-    filter_horizontal = ()
-    add_fieldsets = (
-        (None, {'fields': ('email', 'first_name', 'last_name', 'phone_number',)}),
+    list_filter = ('is_staff',)
+    ordering = ('email',)
+    list_display = ('email', 'first_name', 'last_name', 'phone_number', 'is_staff',)
+    fieldsets = (
+        (None, {'fields': ('email', 'first_name', 'last_name', 'phone_number', 'password')}),
+        ('Permissions', {'fields': ('is_staff',)})
     )
 
 
-class PersonAdmin(BaseUserAdmin):
-    fieldsets = BaseUserAdmin.fieldsets + (
+class PersonAdmin(admin.ModelAdmin):
+    fieldsets = (
             (None, {'fields': ('graduated', 'major', 'company', 'job_title', 'about',)}),
     )
 
