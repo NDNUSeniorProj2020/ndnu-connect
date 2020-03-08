@@ -145,9 +145,4 @@ REST_FRAMEWORK = {
     'NON_FIELD_ERRORS_KEY': 'error'
 }
 
-# JSON Web Token (JWT) Authentication
-#JWT_AUTH = {
-    #'JWT_RESPONSE_PAYLOAD_HANDLER': 'ndnuconnect.utils.my_jwt_response_handler'
-#}
-
 #AUTH_USER_MODEL = "accounts.Person"
