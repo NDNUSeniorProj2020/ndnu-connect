@@ -39,7 +39,7 @@ class UserAdmin(BaseUserAdmin):
 
 class PersonAdmin(admin.ModelAdmin):
     fieldsets = (
-            (None, {'fields': ('graduated', 'major', 'company', 'job_title', 'about',)}),
+        (None, {'fields': ('graduated', 'major', 'company', 'job_title', 'about', 'user')}),
     )
 
 
