@@ -47,7 +47,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Person(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     graduated = models.IntegerField(null=True, blank=True)
     major = models.CharField(max_length=20, null=True, blank=True)
     company = models.CharField(max_length=20, null=True, blank=True)
