@@ -12,15 +12,18 @@ django.setup()
 # User model
 from accounts.models import Person
 userCreate = Person()
-user = userCreate.create_user('testUser', 'UserPassword1')
+user = userCreate.create_user('JonTutor', 'tutorpassword')
+user2= userCreate.create_user('DoeStudent','studentsPassword')
 
 # Tutor model
-from tutor_match.models import Department, Subject, Tutor, Schedule
+from tutor_match.models import Department, Subject, Tutor, Schedule, Student
 # Creates departments
 addDepartment = Department(name='BUS')
 addDepartment2 = Department(name='MTH')
+addDepartment3 = Department(name= 'CHE')
 addDepartment.save()
 addDepartment2.save()
+addDepartment3.save()
 
 # Creates subjects
 addSubject = Subject(subject='Business', semester='Spr2020', course_number='2215')
@@ -37,6 +40,24 @@ schedule1 = Schedule(monday="no",
                      saturday="no",
                      sunday="no")
 schedule1.save()
+schedule2 = Schedule(monday="1-4",
+                     tuesday="1-2",
+                     wednesday="1-2",
+                     thursday="3-4",
+                     friday="5-6",
+                     saturday="1-9",
+                     sunday="no")
+schedule2.save()
+
+schedule1 = Schedule(monday="no",
+                     tuesday="1-2",
+                     wednesday="no",
+                     thursday="3-4",
+                     friday="5-6",
+                     saturday="no",
+                     sunday="no")
+schedule1.save()
+
 
 # Creates a tutor
 addTutor = Tutor(pay=134.1,
@@ -50,6 +71,15 @@ addTutor = Tutor(pay=134.1,
 addTutor.save()
 
 # Creates a student
+addStudent1 = Student(major=addDepartment,
+                      pay="1.2",
+                      standing= 1,
+                      method =1,
+                      location =1,
+                      description="need help in bus 101",
+                      schedule=schedule2,
+                      person=user2 )
+addStudent1.save()
 
 
 
