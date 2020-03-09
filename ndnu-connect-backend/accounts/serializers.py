@@ -1,14 +1,75 @@
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
+from django.contrib.auth import authenticate
 
-from django.contrib.auth.models import User
+from .models import User
 
 
-class UserSerializer(serializers.ModelSerializer):
+class LoginSerializer(serializers.Serializer):
+    email = serializers.CharField(max_length=255)
+    password = serializers.CharField(max_length=128, write_only=True)
+    token = serializers.CharField(max_length=255, read_only=True)
+
+    def validate(self, data):
+        email = data.get('email', None)
+        password = data.get('password', None)
+
+        if email is None:
+            raise serializers.ValidationError('An email address is required to log in.')
+
+        if password is None:
+            raise serializers.ValidationError('A password is required to log in.')
+
+        user = authenticate(username=email, password=password)
+
+        if not user:
+            raise serializers.ValidationError('User does not exist.')
+
+        return {
+            'email': user.email,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'phone_number': user.phone_number,
+            'token': user.token
+        }
+
+
+class RegistrationSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(max_length=128, min_length=8, write_only=True)
+    token = serializers.CharField(max_length=255, read_only=True)
 
     class Meta:
         model = User
-        fields = ('username',)
+        fields = ('email', 'first_name', 'last_name', 'phone_number', 'password', 'token')
+
+    def create(self, validated_data):
+        return User.objects.create_user(**validated_data)
+
+
+class UserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(
+        max_length=128,
+        min_length=8,
+        write_only=True
+    )
+
+    class Meta:
+        model = User
+        fields = ('email', 'first_name', 'last_name', 'phone_number', 'password' ,'token',)
+        read_only_fields = ('token',)
+
+    # Update user
+    def update(self, instance, validated_data):
+        password = validated_data.pop('password', None)
+
+        for (key, value) in validated_data.items():
+            setattr(instance, key, value)
+
+        if password is not None:
+            instance.set_password(password)
+
+        instance.save()
+        return instance
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):
@@ -36,4 +97,4 @@ class UserSerializerWithToken(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('token', 'username', 'password')
+        fields = ('email', 'first_name', 'last_name', 'phone_number', 'token')
