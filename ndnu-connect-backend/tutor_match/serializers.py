@@ -26,11 +26,11 @@ class TutorSerializer(serializers.ModelSerializer):
         model = Tutor
         fields = ['pay', 'subject', 'credentials', 'method',
                   'location', 'description', 'schedule',
-                  'rating', 'num_of_ratings']
+                  'rating', 'num_of_ratings', 'person']
 
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
         fields = ['major', 'pay', 'standing', 'method',
-                  'location', 'description', 'schedule']
+                  'location', 'description', 'schedule', 'person']
