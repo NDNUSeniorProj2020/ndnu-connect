@@ -9,4 +9,4 @@ class JobAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description', 'qualifications', 'date' )
 
 admin.site.register(Job, JobAdmin)
-admin.site.site_header = "Jos" #title
+admin.site.site_header = "Job" #title
