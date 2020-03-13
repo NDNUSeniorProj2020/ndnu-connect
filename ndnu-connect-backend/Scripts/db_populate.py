@@ -10,17 +10,15 @@ django.setup()
 # User model
 from accounts.models import User, Person
 # user, graduated, major, company, job_title, about
-user1 = User()
+user1 = User.objects.create_user("JeffWorker@gmail.com", "workerpassword")
 person1 = Person()
-user2 = User()
+user2 = User.objects.create_user('JonTutor@gmail.com', 'tutorpassword')
 person2 = Person()
-user3 = User()
+user3 = User.objects.create_user('DoeStudent@student.com', 'studentsPassword')
 person3 = Person()
-user1.create("JeffWorker@gmail.com", "workerpassword")
+
 jeff = person1.create(user1, 1990, "Art", "Google", "Graphic Designer", "I do art")
-user2.create('JonTutor@gmail.com', 'tutorpassword')
 jon = person2.create(user2, 2021, "Business", "Self Employed", "Tutor", "I teach stuff")
-user3.create('DoeStudent@student.com', 'studentsPassword')
 doe = person3.create(user3, 2023, "Business", "", "", "")
 
 # Tutor model

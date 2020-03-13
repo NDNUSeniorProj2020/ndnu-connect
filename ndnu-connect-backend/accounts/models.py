@@ -24,9 +24,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     def create(self, email, password):
-        self.email = email
-        self.password = password
-        self.save()
+        self.objects.create_user(email, password)
         return self
 
     def __str__(self):
