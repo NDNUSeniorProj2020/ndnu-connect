@@ -23,6 +23,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
+    def create(self, email, password):
+        self.objects.create_user(email, password)
+        return self
+
     def __str__(self):
         return self.email
 
@@ -54,6 +58,15 @@ class Person(models.Model):
     job_title = models.CharField(max_length=20, null=True, blank=True)
     about = models.TextField(null=True, blank=True)
 
+    def create(self, user, graduated, major, company, job_title, about):
+        self.user = user
+        self.graduated = graduated
+        self.major = major
+        self. company = company
+        self.job_title = job_title
+        self.about = about
+        self.save()
+        return self
 
     def __str__(self):
         return self.user.email
