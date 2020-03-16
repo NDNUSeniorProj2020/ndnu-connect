@@ -10,3 +10,4 @@ PyJWT==1.7.1
 pytz==2019.3
 six==1.14.0
 sqlparse==0.3.0
+django-widget-tweaks==1.4.1

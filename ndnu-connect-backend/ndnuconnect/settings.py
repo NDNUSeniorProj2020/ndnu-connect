@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'tutor_match',
     'accounts',
     'job_find',
+    'boards',
+    'widget_tweaks',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -68,7 +70,9 @@ ROOT_URLCONF = 'ndnuconnect.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
