@@ -9,7 +9,7 @@ class Job(models.Model):
     pay = models.CharField(max_length=50, blank=True)
     link = models.URLField(max_length=115, blank=True)
     date = models.DateTimeField(default=timezone.now)
-    person = models.ForeignKey('accounts.Person', on_delete=models.CASCADE, null=True)  # Referrer
+    user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)
 
     class JobTypes(models.TextChoices):
         FullTime = 'FULL', 'Full Time'
