@@ -11,30 +11,34 @@ from .managers import UserManager
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True)
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
+    display_name = models.CharField(max_length=50, unique=True)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
     phone_number = models.CharField(max_length=20)
     is_active = models.BooleanField(_('active'), default=True)
     is_staff = models.BooleanField(_('staff status'), default=False)
     is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number', 'display_name']
 
     objects = UserManager()
 
-    def create(self, email, password):
+    def create(self, email, password, display_name):
         self.objects.create_user(email, password)
+        self.display_name = display_name
         return self
 
     def __str__(self):
-        return self.email
+        if not self.display_name:
+            return self.email
+        return self.display_name
 
     def get_full_name(self):
-        return self.email
+        return self.first_name + " " + self.last_name
 
     def get_short_name(self):
-        return self.email
+        return self.first_name
 
     @property
     def token(self):
