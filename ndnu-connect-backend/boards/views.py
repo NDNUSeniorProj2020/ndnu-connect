@@ -1,11 +1,25 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Board, Topic, Post
 from .forms import NewTopicForm
-
-from django.db import models
 from importlib import import_module
+from .serializers import BoardSerializer, TopicSerializer, PostSerializer
+from rest_framework import viewsets
 acc = import_module('accounts.models')
-#from acc.models import User
+
+
+class BoardViewSet(viewsets.ModelViewSet):
+    queryset = Board.objects.all()
+    serializer_class = BoardSerializer
+
+
+class TopicViewSet(viewsets.ModelViewSet):
+    queryset = Topic.objects.all()
+    serializer_class = TopicSerializer
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
 
 
 def home(request):
