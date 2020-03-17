@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from .models import Department, Subject, Schedule, Tutor, Student
 from rest_framework import viewsets
+
+from .models import Department, Subject, Schedule, Tutor, Student
 from .serializers import DepartmentSerializer, SubjectSerializer, ScheduleSerializer, \
     TutorSerializer, StudentSerializer
 
@@ -18,14 +18,6 @@ class SubjectViewSet(viewsets.ModelViewSet):
 class ScheduleViewSet(viewsets.ModelViewSet):
     queryset = Schedule.objects.all()
     serializer_class = ScheduleSerializer
-
-# class TuitionMethodSerializer(viewsets.ModelViewSet):
-#     queryset = TuitionMethod.objects.all()
-#     serializer_class = TuitionMethodSerializer
-#
-# class TuitionLocationSerializer(viewsets.ModelViewSet):
-#     queryset = TuitionLocation.objects.all()
-#     serializer_class = TuitionLocationSerializer
 
 
 class TutorViewSet(viewsets.ModelViewSet):

@@ -32,7 +32,7 @@ class Department(models.Model):
     name = models.CharField(choices=DepartmentNames.choices, max_length=3, null=True)
 
     def __str__(self):
-        return self.name
+        return "Department: " + self.name
 
 
 class Subject(models.Model):
@@ -88,7 +88,7 @@ class Tutor(models.Model):
     user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return self.subject.subject + " " + str(self.pay)
+        return self.user.display_name + " - " + self.subject.subject
 
 
 class Student(models.Model):
@@ -110,4 +110,4 @@ class Student(models.Model):
     user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return self.major.name + " " + str(self.pay)
+        return self.user.display_name + " - Studying " + self.major.name
