@@ -19,4 +19,4 @@ class Job(models.Model):
     type = models.CharField(choices=JobTypes.choices, max_length=4, null=True)
 
     def __str__(self):
-        return self.link
+        return "Job Posting: " + self.title
