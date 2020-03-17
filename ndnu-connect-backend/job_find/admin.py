@@ -10,4 +10,3 @@ class JobAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Job, JobAdmin)
-admin.site.site_header = "Job"
