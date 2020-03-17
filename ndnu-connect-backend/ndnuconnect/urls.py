@@ -13,12 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_jwt.views import obtain_jwt_token
-
-from boards import views as boardviews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,12 +24,6 @@ urlpatterns = [
     path('token-auth/', obtain_jwt_token),
 
     # URL redirection for Django apps
-    path('tutoring/', include('tutor_match.urls')),
     path('accounts/', include('accounts.urls')),
     path('api/', include('tutor_match.urls')),
-
-    #path('boards/', include('boards.urls')),
-    url(r'^boards/$', boardviews.home, name='home'),
-    url(r'^boards/(?P<pk>\d+)/$', boardviews.board_topics, name='board_topics'),
-    url(r'^boards/(?P<pk>\d+)/new/$', boardviews.new_topic, name='new_topic'),
 ]
