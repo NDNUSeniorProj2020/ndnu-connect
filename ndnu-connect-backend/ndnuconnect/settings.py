@@ -25,7 +25,9 @@ SECRET_KEY = '@sv+-t4(tbj)-!rwzbj1%)8golr811u1$01^^4k*)n1f^)g72u'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ndnuconnect.us.sysb.ai','127.0.0.1','localhost']
+ALLOWED_HOSTS = ['ndnuconnect.us.sysb.ai',
+                 '127.0.0.1',
+                 'localhost']
 
 
 # Application definition
@@ -39,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
+
+    # NDNU Connect Apps
     'tutor_match',
     'accounts',
     'job_find',
