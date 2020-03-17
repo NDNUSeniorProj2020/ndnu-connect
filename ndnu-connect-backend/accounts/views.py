@@ -7,9 +7,13 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.generics import RetrieveUpdateAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from django.contrib.auth import login as auth_login
 
 from .serializers import UserSerializer, UserSerializerWithToken, RegistrationSerializer, LoginSerializer
 from .renderers import UserJSONRenderer
+from django.shortcuts import render
+from django.contrib.auth.forms import UserCreationForm
+from .forms import AddUserForm
 
 
 @api_view(['GET'])
@@ -80,3 +84,14 @@ class UserList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+def signup(request):
+    if request.method == 'POST':
+        form = AddUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            auth_login(request, user)
+            return redirect('home')
+    else:
+        form = AddUserForm()
+    return render(request, 'signup.html', {'form': form})
