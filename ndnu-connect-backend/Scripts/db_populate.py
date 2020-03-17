@@ -10,11 +10,11 @@ django.setup()
 # User model
 from accounts.models import User, Person
 # user, graduated, major, company, job_title, about
-user1 = User.objects.create_user("JeffWorker@gmail.com", "workerpassword")
+user1 = User.objects.create_user("JeffWorker@gmail.com", "workerpassword", "jeffworker")
 person1 = Person()
-user2 = User.objects.create_user('JonTutor@gmail.com', 'tutorpassword')
+user2 = User.objects.create_user('JonTutor@gmail.com', 'tutorpassword', 'jontutor')
 person2 = Person()
-user3 = User.objects.create_user('DoeStudent@student.com', 'studentsPassword')
+user3 = User.objects.create_user('DoeStudent@student.com', 'studentsPassword', 'doestudent')
 person3 = Person()
 
 jeff = person1.create(user1, 1990, "Art", "Google", "Graphic Designer", "I do art")
@@ -72,7 +72,7 @@ addTutor = Tutor(pay=134.1,
                  location=2,
                  description="Im a nice person",
                  schedule=schedule1,
-                 person=jon)
+                 user=user2)
 addTutor.save()
 
 # Creates a student
@@ -83,12 +83,12 @@ addStudent1 = Student(major=addDepartment,
                       location=1,
                       description="Need help in BUS 101",
                       schedule=schedule2,
-                      person=doe)
+                      user=user3)
 addStudent1.save()
 
 # adds jobs
 from job_find.models import Job
 
 jobTest = Job(title="test1", description="description test", qualifications="bs degree", pay="1234", link="google.com",
-              person=jeff, type='FULL')
+              user=user1, type='FULL')
 jobTest.save()
