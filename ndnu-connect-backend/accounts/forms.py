@@ -14,7 +14,7 @@ class AddUserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'first_name', 'last_name', 'phone_number',)
+        fields = ('email', 'display_name', 'first_name', 'last_name', 'phone_number',)
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -39,7 +39,7 @@ class UpdateUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = (
-            'email', 'password', 'first_name', 'last_name', 'phone_number', 'is_active',
+            'email', 'display_name', 'password', 'first_name', 'last_name', 'phone_number', 'is_active',
             'is_staff'
         )
 

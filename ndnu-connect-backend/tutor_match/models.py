@@ -85,7 +85,7 @@ class Tutor(models.Model):
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, null=True)
     rating = models.FloatField(null=True)
     num_of_ratings = models.FloatField(default=0)
-    person = models.ForeignKey('accounts.Person', on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.subject.subject + " " + str(self.pay)
@@ -107,7 +107,7 @@ class Student(models.Model):
     location = models.IntegerField(choices=TuitionLocation.choices, null=True)
     description = models.TextField(max_length=30, blank=True)
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, null=True)
-    person = models.ForeignKey('accounts.Person', on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.major.name + " " + str(self.pay)
