@@ -7,7 +7,7 @@ class UserJSONRenderer(JSONRenderer):
     charset = 'utf-8'
 
     def render(self, data, media_type=None, renderer_context=None):
-        # Retreive errors
+        # Retrieve errors
         errors = data.get('errors', None)
 
         # Retrieve jwt token

@@ -1,6 +1,7 @@
 import jwt
 
 from datetime import datetime, timedelta
+
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
@@ -66,11 +67,12 @@ class Person(models.Model):
         self.user = user
         self.graduated = graduated
         self.major = major
-        self. company = company
+        self.company = company
         self.job_title = job_title
         self.about = about
+
         self.save()
         return self
 
     def __str__(self):
-        return self.user.email
+        return self.user.email + " - " + self.user.display_name
