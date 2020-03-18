@@ -92,3 +92,27 @@ from job_find.models import Job
 jobTest = Job(title="test1", description="description test", qualifications="bs degree", pay="1234", link="google.com",
               user=user1, type='FULL')
 jobTest.save()
+
+from boards.models import Board, Topic, Post
+
+# Create boards
+board1 = Board(name='Announcements', description='Announce upcoming events at NDNU')
+board1.save()
+board2 = Board(name='Homework', description='Get help for homework.')
+board2.save()
+board3 = Board(name='Random', description='Random board')
+board3.save()
+
+# Create topics
+topic1 = Topic(subject='Math', board=board2, starter=user2)
+topic1.save()
+topic2 = Topic(subject='Computer Science', board=board2, starter=user3)
+topic2.save()
+topic3 = Topic(subject='Athletics', board=board1, starter=user1)
+topic3.save()
+
+# Create posts
+post1 = Post(message='Need help with problem', topic=topic1, created_by=user1)
+post1.save()
+post2 = Post(message='Basketball game Saturday', topic=topic3, created_by=user2)
+post2.save()
