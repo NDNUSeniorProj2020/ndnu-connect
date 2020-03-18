@@ -10,11 +10,11 @@ django.setup()
 # User model
 from accounts.models import User, Person
 # user, graduated, major, company, job_title, about
-user1 = User.objects.create_user("JeffWorker@gmail.com", "workerpassword")
+user1 = User.objects.create_user("JeffWorker@gmail.com", "workerpassword", "jeffworker")
 person1 = Person()
-user2 = User.objects.create_user('JonTutor@gmail.com', 'tutorpassword')
+user2 = User.objects.create_user('JonTutor@gmail.com', 'tutorpassword', 'jontutor')
 person2 = Person()
-user3 = User.objects.create_user('DoeStudent@student.com', 'studentsPassword')
+user3 = User.objects.create_user('DoeStudent@student.com', 'studentsPassword', 'doestudent')
 person3 = Person()
 
 jeff = person1.create(user1, 1990, "Art", "Google", "Graphic Designer", "I do art")
@@ -72,7 +72,7 @@ addTutor = Tutor(pay=134.1,
                  location=2,
                  description="Im a nice person",
                  schedule=schedule1,
-                 person=jon)
+                 user=user2)
 addTutor.save()
 
 # Creates a student
@@ -83,12 +83,36 @@ addStudent1 = Student(major=addDepartment,
                       location=1,
                       description="Need help in BUS 101",
                       schedule=schedule2,
-                      person=doe)
+                      user=user3)
 addStudent1.save()
 
 # adds jobs
 from job_find.models import Job
 
 jobTest = Job(title="test1", description="description test", qualifications="bs degree", pay="1234", link="google.com",
-              person=jeff, type='FULL')
+              user=user1, type='FULL')
 jobTest.save()
+
+from boards.models import Board, Topic, Post
+
+# Create boards
+board1 = Board(name='Announcements', description='Announce upcoming events at NDNU')
+board1.save()
+board2 = Board(name='Homework', description='Get help for homework.')
+board2.save()
+board3 = Board(name='Random', description='Random board')
+board3.save()
+
+# Create topics
+topic1 = Topic(subject='Math', board=board2, starter=user2)
+topic1.save()
+topic2 = Topic(subject='Computer Science', board=board2, starter=user3)
+topic2.save()
+topic3 = Topic(subject='Athletics', board=board1, starter=user1)
+topic3.save()
+
+# Create posts
+post1 = Post(message='Need help with problem', topic=topic1, created_by=user1)
+post1.save()
+post2 = Post(message='Basketball game Saturday', topic=topic3, created_by=user2)
+post2.save()
