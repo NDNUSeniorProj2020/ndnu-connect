@@ -123,3 +123,6 @@ GitHub.sublime-settings
 # Virtual Environment
 venv-ndnu-connect/
 .idea/
+
+# Django Secrets
+ndnu-connect-backend/my_secrets/secrets.py
