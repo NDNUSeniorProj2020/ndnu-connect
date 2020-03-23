@@ -20,7 +20,7 @@ class Department(models.Model):
         HISTORY = 'HST', 'History'
         HUMAN_SERVICES = 'HSP', 'Human Services'
         KINESIOLOGY = 'KIN', 'Kinesiology'
-        LIBERAL_STUDIES = '', 'Liberal Studies'
+        LIBERAL_STUDIES = 'LBS', 'Liberal Studies'
         MATHEMATICS = 'MTH', 'Mathematics'
         PHILOSOPHY = 'PHL', 'Philosophy'
         POLITICAL_SCIENCE = 'PSC', 'Political Science'

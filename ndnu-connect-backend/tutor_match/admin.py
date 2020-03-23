@@ -11,8 +11,16 @@ admin.site.site_header = "NDNU Connect: Admin Portal"
 admin.site.index_title = "NDNU Connect: Admin Portal"
 admin.site.site_title = "NDNU Connect: Admin"
 
-admin.site.register(Tutor)
-admin.site.register(Student)
+class StudentAdmin(admin.ModelAdmin):
+    list_display = ('user','major','standing','method',)
+    list_filter = ('major','standing',)
+class TutorAdmin(admin.ModelAdmin):
+    list_display = ('user', 'subject', 'rating', 'num_of_ratings', )
+    list_filter = ('rating', 'subject',)
+
+
+admin.site.register(Tutor,TutorAdmin)
+admin.site.register(Student, StudentAdmin)
 admin.site.register(Department)
 admin.site.register(Subject)
 admin.site.register(Schedule)
