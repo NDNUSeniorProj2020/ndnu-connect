@@ -111,7 +111,6 @@ class ScheduleTests(TestCase):
 
 
 class TutorTests(TestCase):
-    # pass
     def setUp(self):
         self.subject_for_tutor = {
             'subject': 'Math',
@@ -153,7 +152,7 @@ class TutorTests(TestCase):
 
         self.assertCountEqual(data.keys(), ['pay', 'subject', 'credentials', 'method',
                                             'location', 'description', 'schedule',
-                                            'rating', 'num_of_ratings', 'person'])
+                                            'rating', 'num_of_ratings', 'user'])
 
     def test_field_contents(self):
         data = self.serializer.data
@@ -167,7 +166,7 @@ class TutorTests(TestCase):
         # self.assertEqual(data['schedule'], self.tutor_attributes['schedule'])
         self.assertEqual(data['rating'], self.tutor_attributes['rating'])
         self.assertEqual(data['num_of_ratings'], self.tutor_attributes['num_of_ratings'])
-        # self.assertEqual(data['person'], self.tutor_attributes['person'])
+        # self.assertEqual(data['user'], self.tutor_attributes['user'])
 
 
 class StudentTests(TestCase):
@@ -206,7 +205,7 @@ class StudentTests(TestCase):
         data = self.serializer.data
 
         self.assertCountEqual(data.keys(), ['major', 'pay', 'standing', 'method',
-                                            'location', 'description', 'schedule', 'person'])
+                                            'location', 'description', 'schedule', 'user'])
 
     def test_field_contents(self):
         data = self.serializer.data

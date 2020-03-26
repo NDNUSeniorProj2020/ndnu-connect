@@ -12,16 +12,21 @@ class UserAdmin(BaseUserAdmin):
     model = User
 
     # Setup admin view table
-    search_fields = ('email', 'display_name', 'first_name', 'last_name', 'phone_number',)
+    search_fields = ('email', 'display_name', 'first_name',
+                     'last_name', 'display_name', 'phone_number',)
     list_filter = ('is_staff', 'is_active',)
     ordering = ('email',)
-    list_display = ('email', 'display_name', 'first_name', 'last_name', 'phone_number', 'is_active', 'is_staff',)
+    list_display = ('email', 'display_name', 'first_name', 'last_name',
+                    'display_name', 'phone_number', 'is_active', 'is_staff',)
 
-    # Specify feild sets
+    # Specify field sets
     fieldsets = (
-        (None, {'fields': ('email', 'password', 'display_name',)}),
-        ('Personal info', {'fields': ('first_name', 'last_name', 'phone_number', )}),
-        ('Permissions', {'fields': ('is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions')})
+        (None, {
+            'fields': ('email', 'password', 'display_name',)}),
+        ('Personal info', {
+            'fields': ('first_name', 'last_name', 'phone_number',)}),
+        ('Permissions', {
+            'fields': ('is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions',)})
     )
     add_fieldsets = (
         (
@@ -39,7 +44,8 @@ class UserAdmin(BaseUserAdmin):
 
 class PersonAdmin(admin.ModelAdmin):
     fieldsets = (
-        (None, {'fields': ('graduated', 'major', 'company', 'job_title', 'about', 'user')}),
+        (None, {
+            'fields': ('graduated', 'major', 'company', 'job_title', 'about', 'user')}),
     )
 
 

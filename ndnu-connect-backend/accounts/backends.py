@@ -9,7 +9,7 @@ from .models import User
 class JWTAuthentication(authentication.BaseAuthentication):
     authentication_header_prefix = 'Token'
 
-    # authenticate method will always be called regardless of whether the endpoint requires authentication
+    # Authenticate method will always be called regardless of whether the endpoint requires authentication
     # This method returns None if authentication fails, or (user, token) if authentication is successful
     def authenticate(self, req):
         req.user = None
@@ -41,7 +41,7 @@ class JWTAuthentication(authentication.BaseAuthentication):
 
         return self._authenticate_credentials(req, token)
 
-    # _authenticate_credentials attemps to authenticate with the given credentials
+    # _authenticate_credentials attempts to authenticate with the given credentials
     def _authenticate_credentials(self, req, token):
         try:
             payload = jwt.decode(token, settings.SECRET_KEY)

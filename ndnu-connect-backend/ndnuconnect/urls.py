@@ -13,7 +13,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_jwt.views import obtain_jwt_token
@@ -41,8 +40,9 @@ urlpatterns = [
     path('token-auth/', obtain_jwt_token),
 
     # URL redirection for Django apps
-    path('tutoring/', include('tutor_match.urls')),
     path('accounts/', include('accounts.urls')),
+    path('api/', include('tutor_match.urls')),
+    
     #path('api/', include('boards.urls')),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
