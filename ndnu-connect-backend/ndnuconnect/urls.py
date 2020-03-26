@@ -16,6 +16,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework import routers
+
+from tutor_match import views as tutorviews
+from job_find import views as jobviews
+from boards import views as boardviews
+
+router = routers.DefaultRouter()
+router.register(r'department', tutorviews.DepartmentViewSet)
+router.register(r'subject', tutorviews.SubjectViewSet)
+router.register(r'schedule', tutorviews.ScheduleViewSet)
+router.register(r'tutor', tutorviews.TutorViewSet)
+router.register(r'student', tutorviews.StudentViewSet)
+router.register(r'job', jobviews.JobViewSet)
+router.register(r'board', boardviews.BoardViewSet)
+router.register(r'topic', boardviews.TopicViewSet)
+router.register(r'post', boardviews.PostViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +42,15 @@ urlpatterns = [
     # URL redirection for Django apps
     path('accounts/', include('accounts.urls')),
     path('api/', include('tutor_match.urls')),
+    
+    #path('api/', include('boards.urls')),
+    path('api/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
+'''
+#path('boards/', include('boards.urls')),
+url(r'^boards/$', boardviews.home, name='home'),
+url(r'^boards/(?P<pk>\d+)/$', boardviews.board_topics, name='board_topics'),
+url(r'^boards/(?P<pk>\d+)/new/$', boardviews.new_topic, name='new_topic'),
+]
+'''
