@@ -12,6 +12,5 @@ router.register(r'post', views.PostViewSet)
 
 urlpatterns = [
     url('', home, name='boards'),
-    url(r'^admin/', admin.site.urls),
     url('<int:pk>/', board_topics, name='boards'),
 ]
