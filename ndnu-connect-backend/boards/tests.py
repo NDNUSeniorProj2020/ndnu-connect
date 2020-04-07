@@ -24,19 +24,47 @@ class BoardTestCase(TestCase):
         post2.save()
 
     def testBoardNames(self):
-        board1 = Board.objects.get(name="Events")
-        board2 = Board.objects.get(name="Textbooks")
+        board1 = Board.objects.get(pk=1)
+        board2 = Board.objects.get(pk=2)
         self.assertEqual(board1.name, 'Events')
         self.assertEqual(board2.name, 'Textbooks')
 
+    def testBoardDescriptions(self):
+        board1 = Board.objects.get(pk=1)
+        board2 = Board.objects.get(pk=2)
+        self.assertEqual(board1.description, 'Upcoming events at NDNU')
+        self.assertEqual(board2.description, 'Buy or sell textbooks')
+
     def testTopicSubjects(self):
-        topic1 = Topic.objects.get(subject="My Birthday")
-        topic2 = Topic.objects.get(subject="Not My Birthday")
+        topic1 = Topic.objects.get(pk=1)
+        topic2 = Topic.objects.get(pk=2)
         self.assertEqual(topic1.subject, 'My Birthday')
         self.assertEqual(topic2.subject, 'Not My Birthday')
 
+    def testTopicBoards(self):
+        board1 = Board.objects.get(pk=1)
+        board2 = Board.objects.get(pk=2)
+        topic1 = Topic.objects.get(pk=1)
+        topic2 = Topic.objects.get(pk=2)
+        self.assertEqual(topic1.board, board1)
+        self.assertEqual(topic2.board, board2)
+    """
+    def testTopicStarters(self):
+        topic1 = Topic.objects.get(pk=1)
+        topic2 = Topic.objects.get(pk=2)
+        self.assertEqual(topic1.starter, 'My Birthday')
+        self.assertEqual(topic2.starter, 'Not My Birthday')
+    """
     def testPostMessages(self):
-        post1 = Post.objects.get(message="Who cares")
-        post2 = Post.objects.get(message="Good")
+        post1 = Post.objects.get(pk=1)
+        post2 = Post.objects.get(pk=2)
         self.assertEqual(post1.message, 'Who cares')
         self.assertEqual(post2.message, 'Good')
+
+    def testPostMessages(self):
+        topic1 = Topic.objects.get(pk=1)
+        topic2 = Topic.objects.get(pk=2)
+        post1 = Post.objects.get(pk=1)
+        post2 = Post.objects.get(pk=2)
+        self.assertEqual(post1.topic, topic1)
+        self.assertEqual(post2.topic, topic2)
