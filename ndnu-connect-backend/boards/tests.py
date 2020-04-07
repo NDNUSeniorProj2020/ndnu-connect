@@ -17,12 +17,11 @@ class BoardTestCase(TestCase):
         topic1.save()
         topic2 = Topic(subject='Not My Birthday', board=board2, starter=user2)
         topic2.save()
-        '''
-        post1 = Post(name='Events', description='Upcoming events at NDNU')
+
+        post1 = Post(message='Who cares', topic=topic1, created_by=user2)
         post1.save()
-        post2 = Post(name='Textbooks', description='Buy or sell textbooks')
+        post2 = Post(message='Good', topic=topic2, created_by=user1)
         post2.save()
-        '''
 
     def testBoardNames(self):
         board1 = Board.objects.get(name="Events")
@@ -30,16 +29,14 @@ class BoardTestCase(TestCase):
         self.assertEqual(board1.name, 'Events')
         self.assertEqual(board2.name, 'Textbooks')
 
-    def testPostNames(self):
+    def testTopicSubjects(self):
         topic1 = Topic.objects.get(subject="My Birthday")
         topic2 = Topic.objects.get(subject="Not My Birthday")
         self.assertEqual(topic1.subject, 'My Birthday')
         self.assertEqual(topic2.subject, 'Not My Birthday')
 
-    '''
-    def testPostNames(self):
-        post1 = Post.objects.get(name="Events")
-        post2 = Post.objects.get(name="Textbooks")
-        self.assertEqual(post1.name, 'Events')
-        self.assertEqual(post2.name, 'Textbooks')
-    '''
+    def testPostMessages(self):
+        post1 = Post.objects.get(message="Who cares")
+        post2 = Post.objects.get(message="Good")
+        self.assertEqual(post1.message, 'Who cares')
+        self.assertEqual(post2.message, 'Good')
