@@ -32,9 +32,8 @@ try:
     person1 = Person()
     jeff = person1.create(user1, 1990, "Art", "Google", "Graphic Designer", "I do art")
     # adds jobs
-    jobTest = Job(title="test1", description="description test", qualifications="bs degree", pay="1234",
-                  link="google.com",
-                  user=user1, type='FULL')
+    jobTest = Job(title="test1", description="description test", company="Google", location="Mountain View, CA",
+                  qualifications="bs degree", pay="1234", link="google.com", user=user1, type='FULL')
     jobTest.save()
 
 except:
