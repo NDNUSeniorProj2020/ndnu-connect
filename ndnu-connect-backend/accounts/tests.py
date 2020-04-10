@@ -14,13 +14,6 @@ class AccountsTestCase(TestCase):
         self.assertEqual(user1.email, 'JeffTest@gmail.com')
         self.assertEqual(user2.email, 'JonTest@gmail.com')
 
-    def testUserDisplayName(self):
-        user1 = User.objects.get(pk=1)
-        user2 = User.objects.get(pk=2)
-
-        self.assertEqual(user1.display_name, 'jeffworker')
-        self.assertEqual(user2.display_name, 'jontutor')
-
     def testUserToString(self):
         user1 = User.objects.get(pk=1)
         user2 = User.objects.get(pk=2)

@@ -12,7 +12,7 @@ from .managers import UserManager
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True)
-    display_name = models.CharField(max_length=50, unique=True)
+    display_name = models.CharField(max_length=50, null=True, blank=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     phone_number = models.CharField(max_length=20)
@@ -21,19 +21,16 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number', 'display_name']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number']
 
     objects = UserManager()
 
-    def create(self, email, password, display_name):
+    def create(self, email, password):
         self.objects.create_user(email, password)
-        self.display_name = display_name
         return self
 
     def __str__(self):
-        if not self.display_name:
-            return self.email
-        return self.display_name
+        return self.email
 
     def get_full_name(self):
         return self.first_name + " " + self.last_name
@@ -50,7 +47,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
         token = jwt.encode({
             'id': self.pk,
-            'expt': int(dt.strftime('%s'))
+            'expt': int(dt.strftime('%S'))
         }, settings.SECRET_KEY, algorithm='HS256')
         return token.decode('utf-8')
 
@@ -75,4 +72,4 @@ class Person(models.Model):
         return self
 
     def __str__(self):
-        return self.user.email + " - " + self.user.display_name
+        return self.user.email

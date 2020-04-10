@@ -12,17 +12,17 @@ class UserAdmin(BaseUserAdmin):
     model = User
 
     # Setup admin view table
-    search_fields = ('email', 'display_name', 'first_name',
-                     'last_name', 'display_name', 'phone_number',)
+    search_fields = ('email', 'first_name',
+                     'last_name', 'phone_number',)
     list_filter = ('is_staff', 'is_active',)
     ordering = ('email',)
-    list_display = ('email', 'display_name', 'first_name', 'last_name',
-                    'display_name', 'phone_number', 'is_active', 'is_staff',)
+    list_display = ('email', 'first_name', 'last_name',
+                    'phone_number', 'is_active', 'is_staff',)
 
     # Specify field sets
     fieldsets = (
         (None, {
-            'fields': ('email', 'password', 'display_name',)}),
+            'fields': ('email', 'password',)}),
         ('Personal info', {
             'fields': ('first_name', 'last_name', 'phone_number',)}),
         ('Permissions', {
@@ -34,7 +34,7 @@ class UserAdmin(BaseUserAdmin):
             {
                 'classes': ('wide',),
                 'fields': (
-                    'email', 'display_name', 'first_name', 'last_name', 'phone_number', 'password1',
+                    'email', 'first_name', 'last_name', 'phone_number', 'password1',
                     'password2'
                 )
             }
