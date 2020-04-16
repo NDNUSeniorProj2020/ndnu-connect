@@ -5,8 +5,8 @@ from .models import Board, Topic, Post
 
 class BoardTestCase(TestCase):
     def setUp(self):
-        user1 = User.objects.create_user("JeffTest@gmail.com", "workerpassword", "jeffworker")
-        user2 = User.objects.create_user("JonTest@gmail.com", "tutorpassword", "jontutor")
+        user1 = User.objects.create_user("JeffTest@gmail.com", "workerpassword")
+        user2 = User.objects.create_user("JonTest@gmail.com", "tutorpassword")
 
         board1 = Board(name='Events', description='Upcoming events at NDNU')
         board1.save()
@@ -109,5 +109,5 @@ class BoardTestCase(TestCase):
         post1 = Post.objects.get(pk=1)
         post2 = Post.objects.get(pk=2)
 
-        self.assertEqual(str(post1), "Post #1 for Topic 'My Birthday' by user jontutor")
-        self.assertEqual(str(post2), "Post #2 for Topic 'Not My Birthday' by user jeffworker")
+        self.assertEqual(str(post1), "Post #1 for Topic 'My Birthday' by user JonTest@gmail.com")
+        self.assertEqual(str(post2), "Post #2 for Topic 'Not My Birthday' by user JeffTest@gmail.com")

@@ -4,6 +4,8 @@ from django.utils import timezone
 
 class Job(models.Model):
     title = models.CharField(max_length=50, blank=True)
+    company = models.CharField(max_length=50, blank=True)
+    location = models.CharField(max_length=100, blank=True)
     description = models.TextField(max_length=300, blank=True)
     company = models.CharField(max_length=50, blank=True)
     location = models.CharField(max_length=100, blank=True)

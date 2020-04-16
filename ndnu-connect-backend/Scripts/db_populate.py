@@ -28,19 +28,18 @@ except:
     print("Boards exist")
 
 try:
-    user1 = User.objects.create_user("JeffWorker@gmail.com", "workerpassword", "jeffworker")
+    user1 = User.objects.create_user("JeffWorker@gmail.com", "workerpassword")
     person1 = Person()
     jeff = person1.create(user1, 1990, "Art", "Google", "Graphic Designer", "I do art")
     # adds jobs
-    jobTest = Job(title="test1", description="description test", company="Google", location="Mountain View, CA",  qualifications="bs degree", pay="1234",
-                  link="google.com",
-                  user=user1, type='FULL')
+    jobTest = Job(title="test1", description="description test", company="Google", location="Mountain View, CA",
+                  qualifications="bs degree", pay="1234", link="google.com", user=user1, type='FULL')
     jobTest.save()
 
 except:
     print("User exists")
 try:
-    user2 = User.objects.create_user('JonTutor@gmail.com', 'tutorpassword', 'jontutor')
+    user2 = User.objects.create_user('JonTutor@gmail.com', 'tutorpassword')
     person2 = Person()
     jon = person2.create(user2, 2021, "Business", "Self Employed", "Tutor", "I teach stuff")
     # Creates subject
@@ -68,7 +67,7 @@ try:
 except:
     print("User exists")
 try:
-    user3 = User.objects.create_user('DoeStudent@student.com', 'studentsPassword', 'doestudent')
+    user3 = User.objects.create_user('DoeStudent@student.com', 'studentsPassword')
     person3 = Person()
     doe = person3.create(user3, 2023, "Business", "", "", "")
     # Creates department

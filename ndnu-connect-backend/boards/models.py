@@ -30,4 +30,4 @@ class Post(models.Model):
 
     def __str__(self):
         return "Post #" + str(self.id) + " for Topic '" + self.topic.subject + \
-               "' by user " + self.created_by.display_name
+               "' by user " + self.created_by.email
