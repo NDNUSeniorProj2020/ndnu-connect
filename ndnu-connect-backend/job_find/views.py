@@ -8,7 +8,7 @@ from rest_framework.generics import UpdateAPIView
 class JobViewSet(viewsets.ModelViewSet):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
-class JobUpdateView(UpdateAPIView):
+class JobUpdate(UpdateAPIView):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
     
