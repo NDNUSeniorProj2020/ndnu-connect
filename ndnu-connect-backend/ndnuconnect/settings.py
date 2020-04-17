@@ -9,11 +9,12 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
+
 import os
 from my_secrets import secrets
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -28,6 +29,7 @@ ALLOWED_HOSTS = ['ndnuconnect.us.sysb.ai',
                  '127.0.0.1',
                  'localhost',
                  'ec2-54-241-187-187.us-west-1.compute.amazonaws.com']
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -93,7 +95,6 @@ WSGI_APPLICATION = 'ndnuconnect.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -123,7 +124,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'America/Los_Angeles'
@@ -137,8 +137,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'ndnuconnect', 'static'))
 STATIC_URL = '/static/'
+
 
 # Rest Framework
 REST_FRAMEWORK = {
