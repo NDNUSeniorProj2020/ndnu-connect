@@ -30,6 +30,7 @@ router.register(r'tutor', tutorviews.TutorViewSet)
 router.register(r'student', tutorviews.StudentViewSet)
 
 router.register(r'job', jobviews.JobViewSet)
+#router.register(r'api/job/<int:pk>', jobviews.JobUpdateAPIView)
 
 router.register(r'board', boardviews.BoardViewSet)
 router.register(r'topic', boardviews.TopicViewSet)
@@ -45,5 +46,6 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     
     path('api/', include(router.urls)),
+    path('api/job/<int:pk>/update/',jobviews.JobUpdateView.as_view()),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

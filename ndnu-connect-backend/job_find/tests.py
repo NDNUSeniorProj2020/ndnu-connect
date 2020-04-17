@@ -1,4 +1,5 @@
 from django.test import TestCase
+from rest_framework.test import APITestCase
 from accounts.models import User
 from .models import Job
 
@@ -27,3 +28,4 @@ class JobsTestCase(TestCase):
 
         self.assertEqual(str(job1), "Job Posting: testjob1")
         self.assertEqual(str(job2), "Job Posting: testjob2")
+        
