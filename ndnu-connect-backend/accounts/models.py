@@ -53,15 +53,17 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Person(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    graduated = models.IntegerField(null=True, blank=True)
+    graduated = models.BooleanField(default=False)
+    year_graduated = models.IntegerField(null=True, blank=True)
     major = models.CharField(max_length=20, null=True, blank=True)
     company = models.CharField(max_length=20, null=True, blank=True)
     job_title = models.CharField(max_length=20, null=True, blank=True)
     about = models.TextField(null=True, blank=True)
 
-    def create(self, user, graduated, major, company, job_title, about):
+    def create(self, user, graduated, year_graduated, major, company, job_title, about):
         self.user = user
         self.graduated = graduated
+        self.year_graduated = year_graduated
         self.major = major
         self.company = company
         self.job_title = job_title
