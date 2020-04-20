@@ -77,7 +77,7 @@ class TuitionLocation(models.IntegerChoices):
 class Tutor(models.Model):
 
     pay = models.FloatField()
-    subject = models.ManyToManyField(Subject, null=True)
+    subject = models.ManyToManyField(Subject)
     credentials = models.TextField(max_length=50, blank=True)
     method = models.IntegerField(choices=TuitionMethod.choices, null=True)
     location = models.IntegerField(choices=TuitionLocation.choices, null=True)
@@ -87,8 +87,11 @@ class Tutor(models.Model):
     num_of_ratings = models.FloatField(default=0)
     user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)
 
+    def get_subjects(self):
+        return ",".join([str(p) for p in self.subject.all()])
+
     def __str__(self):
-        return self.user.display_name + " - " + self.subject.subject
+        return self.user.display_name + " - " + self.get_subjects()
 
 
 class Student(models.Model):
