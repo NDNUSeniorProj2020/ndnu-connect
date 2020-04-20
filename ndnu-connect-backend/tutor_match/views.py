@@ -12,7 +12,7 @@ class DepartmentViewSet(viewsets.ModelViewSet):
 
 class SubjectViewSet(viewsets.ModelViewSet):
     queryset = Subject.objects.all()
-    serializer_class = SubjectSerializer(queryset, many = True)
+    serializer_class = SubjectSerializer
 
 
 class ScheduleViewSet(viewsets.ModelViewSet):
