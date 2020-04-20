@@ -15,8 +15,11 @@ class StudentAdmin(admin.ModelAdmin):
     list_display = ('user','major','standing','method',)
     list_filter = ('major','standing',)
 class TutorAdmin(admin.ModelAdmin):
-    list_display = ('user', 'subject', 'rating', 'num_of_ratings', )
+    list_display = ('user', 'get_subjects', 'rating', 'num_of_ratings', )
     list_filter = ('rating', 'subject',)
+
+    def get_subjects(self, obj):
+        return "\n".join([p.subjects for p in obj.subject.all()])
 
 
 admin.site.register(Tutor,TutorAdmin)

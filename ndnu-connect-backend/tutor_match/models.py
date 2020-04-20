@@ -77,7 +77,7 @@ class TuitionLocation(models.IntegerChoices):
 class Tutor(models.Model):
 
     pay = models.FloatField()
-    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, null=True)
+    subject = models.ManyToManyField(Subject, null=True)
     credentials = models.TextField(max_length=50, blank=True)
     method = models.IntegerField(choices=TuitionMethod.choices, null=True)
     location = models.IntegerField(choices=TuitionLocation.choices, null=True)
