@@ -43,3 +43,11 @@ class StudentSerializer(serializers.ModelSerializer):
         model = Student
         fields = ['major', 'pay', 'standing', 'method',
                   'location', 'description', 'schedule', 'user']
+
+        subject = GenericRelatedField({
+            Subject: SubjectSerializer(),
+        })
+
+        class Meta:
+            model = Subject
+            fields = ('subject', 'semester','course_number')

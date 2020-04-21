@@ -105,6 +105,7 @@ class Student(models.Model):
 
     major = models.ForeignKey(Department, on_delete=models.CASCADE)
     pay = models.FloatField()
+    subject = models.ManyToManyField(Subject)
     standing = models.IntegerField(choices=YearInSchool.choices, null=True)
     method = models.IntegerField(choices=TuitionMethod.choices, null=True)
     location = models.IntegerField(choices=TuitionLocation.choices, null=True)
@@ -112,5 +113,9 @@ class Student(models.Model):
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)
 
+    def get_subjects(self):
+        return ",".join([str(p) for p in self.subject.all()])
+
     def __str__(self):
         return self.user.display_name + " - Studying " + self.major.name
+
