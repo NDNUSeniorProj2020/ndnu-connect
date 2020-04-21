@@ -41,7 +41,7 @@ class TutorSerializer(serializers.ModelSerializer):
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = ['major', 'pay', 'standing', 'method',
+        fields = ['major', 'pay', 'standing', 'method','subject',
                   'location', 'description', 'schedule', 'user']
 
         subject = GenericRelatedField({
