@@ -64,10 +64,14 @@ class Person(models.Model):
     company = models.CharField(max_length=20, null=True, blank=True)
     job_title = models.CharField(max_length=20, null=True, blank=True)
     about = models.TextField(null=True, blank=True)
-    first_name = models.TextField(default=user.get_first_name())
-    last_name = models.TextField(default=user.get_last_name())
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
 
+    def save(self, *args, **kwargs):
+        self.first_name = self.user.first_name
+        self.last_name = self.user.last_name
 
+        super().save(*args, **kwargs)
 
     def create(self, user, graduated, year_graduated, major, company, job_title, about):
         self.user = user
