@@ -15,6 +15,9 @@ class Job(models.Model):
     date = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)
 
+
+
+
     class JobTypes(models.TextChoices):
         FullTime = 'FULL', 'Full Time'
         PartTime = 'PART', 'Part Time'
