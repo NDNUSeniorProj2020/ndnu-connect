@@ -18,7 +18,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(_('active'), default=True)
     is_staff = models.BooleanField(_('staff status'), default=False)
     is_superuser = models.BooleanField(default=False)
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number']
 
@@ -39,6 +38,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_first_name(self):
         return self.first_name
+
     def get_last_name(self):
         return self.last_name
 
@@ -64,8 +64,10 @@ class Person(models.Model):
     company = models.CharField(max_length=20, null=True, blank=True)
     job_title = models.CharField(max_length=20, null=True, blank=True)
     about = models.TextField(null=True, blank=True)
-    first_name = models.TextField(default='accounts.User.get_first_name')
-    last_name = models.TextField(default='accounts.User.get_last_name')
+    first_name = models.TextField(default=user.get_first_name())
+    last_name = models.TextField(default=user.get_last_name())
+
+
 
     def create(self, user, graduated, year_graduated, major, company, job_title, about):
         self.user = user
