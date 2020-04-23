@@ -56,7 +56,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         }, settings.SECRET_KEY, algorithm='HS256')
         return token.decode('utf-8')
 
-
+'''
 class Person(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     graduated = models.BooleanField(default=False)
@@ -80,3 +80,4 @@ class Person(models.Model):
 
     def __str__(self):
         return self.user.email
+'''

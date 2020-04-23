@@ -8,7 +8,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from .serializers import UserSerializer, UserSerializerWithToken, RegistrationSerializer, LoginSerializer, \
     AlumniSerializer
 from .renderers import UserJSONRenderer
-from .models import Person
+from .models import User
 
 
 @api_view(['GET'])
@@ -48,7 +48,7 @@ class LoginAPIView(APIView):
 
 
 class AlumniViewSet(viewsets.ModelViewSet):
-    queryset = Person.objects.filter(graduated=True)
+    queryset = User.objects.filter(graduated=True)
     serializer_class = AlumniSerializer
 
 

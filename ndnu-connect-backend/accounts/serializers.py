@@ -71,12 +71,12 @@ class UserSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
-'''
+
 class AlumniSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Person
-        fields = '__all__'
-'''
+        model = User
+        fields = ('email', 'first_name', 'last_name', 'graduated', 'year_graduated', 'major', 'company', 'job_title', 'about',)
+
 
 class UserSerializerWithToken(serializers.ModelSerializer):
 
