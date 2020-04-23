@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from django.contrib.auth import authenticate
 
-from .models import User, Person
+from .models import User
 
 
 class LoginSerializer(serializers.Serializer):
@@ -71,12 +71,12 @@ class UserSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
-
+'''
 class AlumniSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
         fields = '__all__'
-
+'''
 
 class UserSerializerWithToken(serializers.ModelSerializer):
 
