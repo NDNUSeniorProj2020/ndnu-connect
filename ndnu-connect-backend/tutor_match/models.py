@@ -88,7 +88,7 @@ class Tutor(models.Model):
     user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return self.user.display_name + " - " + self.subject.subject
+        return self.user.email + " - " + self.subject.subject
 
 
 class Student(models.Model):
@@ -110,4 +110,4 @@ class Student(models.Model):
     user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return self.user.display_name + " - Studying " + self.major.name
+        return self.user.email + " - Studying " + self.major.name
