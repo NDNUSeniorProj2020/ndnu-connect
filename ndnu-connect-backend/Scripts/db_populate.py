@@ -8,7 +8,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'ndnuconnect.settings'
 django.setup()
 
 # User model
-from accounts.models import User, Person
+from accounts.models import User
 # Tutor model
 from tutor_match.models import Department, Subject, Tutor, Schedule, Student
 # Board model
@@ -31,10 +31,7 @@ except:
 
 # Creating a user and jobs
 try:
-    user1 = User.objects.create_user("JeffWorker@gmail.com", "workerpassword")
-    person1 = Person()
-    jeff = person1.create(user1, False, 1990, "Art", "Google", "Graphic Designer", "I make graphic designs.")
-
+    user1 = User.objects.create_user("JeffWorker@gmail.com", "workerpassword", first_name="John", last_name="Worker", graduated=True, year_graduated=2017, major="Computer Science", company="Google Inc.", job_title="Software Engineer")
     jobTest = Job(title="test1", description="description test", company="Google", location="Mountain View, CA",
                   qualifications="bs degree", pay="1234", link="google.com", user=user1, type='FULL')
     jobTest.save()
@@ -45,9 +42,7 @@ except:
 
 # Create a user, subject, schedule, and tutor
 try:
-    user2 = User.objects.create_user('JonTutor@gmail.com', 'tutorpassword')
-    person2 = Person()
-    jon = person2.create(user2, True, 2021, "Business", "Self Employed", "Tutor", "I teach stuff")
+    user2 = User.objects.create_user('JonTutor@gmail.com', 'tutorpassword', first_name='Jon', last_name='Tutor', graduated=True, year_graduated=2018, major='Biology')
 
     addSubject = Subject(subject='Business', semester='Spr2020', course_number='2215')
     addSubject.save()
@@ -78,8 +73,6 @@ except:
 # Create a user, department, schedule, and student
 try:
     user3 = User.objects.create_user('DoeStudent@student.com', 'studentsPassword')
-    person3 = Person()
-    doe = person3.create(user3, True, 2023, "Business", "N/A", "Student", "I'm a student that needs help in class.")
 
     addDepartment = Department(name='BUS')
     addDepartment.save()
@@ -109,29 +102,10 @@ except:
 
 # Create four users
 try:
-    user4 = User.objects.create_user('john@mynametoo.com', 'blackcherry500')
-    person4 = Person()
-    john = person4.create(user4, True, 2018, "Computer Science", "Four Brothers: Criminal Justice",
-                         "Software Engineer",
-                         "I develop software for my company, founded with my four brothers.")
-
-    user5 = User.objects.create_user('jacob@mynametoo.com', 'raspberry500')
-    person5 = Person()
-    jacob = person5.create(user5, False, 2023, "Criminal Justice", "Four Brothers: Criminal Justice",
-                          "Detective",
-                          "I investigate criminal activities for a company with my four brothers.")
-
-    user6 = User.objects.create_user('jingleheimer@mynametoo.com', 'applehoney500')
-    person6 = Person()
-    jingleheimer = person6.create(user6, True, 2018, "Biology", "Four Brothers: Criminal Justice",
-                                 "Forensic Scientist",
-                                 "I analyze biological patterns and clues in a company with my four brothers.")
-
-    user7 = User.objects.create_user('schmidt@mynametoo.com', 'peach500')
-    person7 = Person()
-    schmidt = person7.create(user7, False, 2023, "English", "Four Brothers: Criminal Justice",
-                            "Administrator",
-                            "I write reports to send out in a company with my four brothers.")
+    user4 = User.objects.create_user('john@mynametoo.com', 'blackcherry500', first_name='John', last_name='Cherry', graduated=True, year_graduated=2010, major='Business Administration', company='KPMG', job_title='Financial Advisor')
+    user5 = User.objects.create_user('jacob@mynametoo.com', 'raspberry500', first_name='Jacob', last_name='Raspberry')
+    user6 = User.objects.create_user('jingleheimer@mynametoo.com', 'applehoney500', first_name='Jingle', last_name='Heimer')
+    user7 = User.objects.create_user('schmidt@mynametoo.com', 'peach500', first_name='Nicholas', last_name='Schmidt', graduated=True, year_graduated=2005, major='Accounting & Finance', company='Facebook Inc.', job_title='Accountant')
     print("The 4 users have been created.")
 except:
     print("The 4 users already exist")
