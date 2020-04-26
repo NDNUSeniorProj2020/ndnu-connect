@@ -24,24 +24,21 @@ class ScheduleSerializer(serializers.ModelSerializer):
 
 
 class TutorSerializer(serializers.ModelSerializer):
+    subject = SubjectSerializer(many=True, read_only=True)
+
     class Meta:
         model = Tutor
         fields = ['pay', 'subject', 'credentials', 'method',
                   'location', 'description', 'schedule',
                   'rating', 'num_of_ratings', 'user']
-        subject = GenericRelatedField({
-            Subject: SubjectSerializer(),
-        })
-
-        class Meta:
-            model = Subject
-            fields = ('subject', 'semester','course_number')
 
 
 class StudentSerializer(serializers.ModelSerializer):
+    subject = SubjectSerializer(many=True, read_only=True)
+
     class Meta:
         model = Student
-        fields = ['major', 'pay', 'standing', 'method','subject',
+        fields = ['major', 'pay', 'standing', 'method', 'subject',
                   'location', 'description', 'schedule', 'user']
 
         subject = GenericRelatedField({
@@ -50,4 +47,4 @@ class StudentSerializer(serializers.ModelSerializer):
 
         class Meta:
             model = Subject
-            fields = ('subject', 'semester','course_number')
+            fields = ('subject', 'semester', 'course_number')

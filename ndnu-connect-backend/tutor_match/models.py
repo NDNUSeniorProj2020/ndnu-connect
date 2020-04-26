@@ -40,6 +40,9 @@ class Subject(models.Model):
     semester = models.TextField(max_length=10, blank=True)
     course_number = models.TextField(max_length=10, blank=True)
 
+    def get_subject_name(self):
+        return self.subject
+
     def __str__(self):
         return self.subject
 
@@ -87,8 +90,14 @@ class Tutor(models.Model):
     num_of_ratings = models.FloatField(default=0)
     user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)
 
+    def save(self, *args, **kwargs):
+        self.subject = self.subject.get_subject_name()
+        super().save(*args, **kwargs)
+
+
     def get_subjects(self):
         return ",".join([str(p) for p in self.subject.all()])
+
 
     def __str__(self):
         return self.user.display_name + " - " + self.get_subjects()
