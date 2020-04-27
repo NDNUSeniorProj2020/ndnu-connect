@@ -6,7 +6,8 @@ This application will match students and tutors with one another. Students and t
 This application allows users to post and view job opportunities. Users can post jobs that they can refer for, making this application much more effective at helping NDNU students and alumni find employment. Those searching for opportunities will be able to view the referrers email to ask for help preparing for the prospect.
 ### Alumni
 This application will allow past students to connect with each other by showing their graduation year and major.
-
+### Forum
+This application, as the name implies, is an open forum for users to share.
 ## Back End
 This repository contains the back end for the project.
 - Django
