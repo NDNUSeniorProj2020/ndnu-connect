@@ -1,3 +1,4 @@
+from generic_relations.relations import GenericRelatedField
 from rest_framework import serializers
 
 from .models import Department, Subject, Schedule, Tutor, Student
@@ -24,6 +25,7 @@ class ScheduleSerializer(serializers.ModelSerializer):
 
 class TutorSerializer(serializers.ModelSerializer):
     email = serializers.CharField(source='user.email', read_only=True, allow_null=True)
+    subject = SubjectSerializer(many=True, read_only=True)
 
     class Meta:
         model = Tutor
@@ -31,11 +33,28 @@ class TutorSerializer(serializers.ModelSerializer):
                   'location', 'description', 'schedule',
                   'rating', 'num_of_ratings', 'user', 'email']
 
+        subject = GenericRelatedField({
+            Subject: SubjectSerializer(),
+        })
+
+        class Meta:
+            model = Subject
+            fields = ('subject', 'semester', 'course_number')
+
 
 class StudentSerializer(serializers.ModelSerializer):
     email = serializers.CharField(source='user.email', read_only=True, allow_null=True)
+    subject = SubjectSerializer(many=True, read_only=True)
 
     class Meta:
         model = Student
-        fields = ['major', 'pay', 'standing', 'method',
+        fields = ['major', 'pay', 'standing', 'method', 'subject',
                   'location', 'description', 'schedule', 'user', 'email']
+
+        subject = GenericRelatedField({
+            Subject: SubjectSerializer(),
+        })
+
+        class Meta:
+            model = Subject
+            fields = ('subject', 'semester', 'course_number')
