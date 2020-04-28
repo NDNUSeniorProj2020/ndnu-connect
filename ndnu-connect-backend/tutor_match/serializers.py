@@ -32,6 +32,14 @@ class TutorSerializer(serializers.ModelSerializer):
                   'location', 'description', 'schedule',
                   'rating', 'num_of_ratings', 'user']
 
+        subject = GenericRelatedField({
+            Subject: SubjectSerializer(),
+        })
+
+        class Meta:
+            model = Subject
+            fields = ('subject', 'semester', 'course_number')
+
 
 class StudentSerializer(serializers.ModelSerializer):
     subject = SubjectSerializer(many=True, read_only=True)
