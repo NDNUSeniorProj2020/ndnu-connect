@@ -2,7 +2,6 @@ from django.db import models
 
 
 class Department(models.Model):
-
     class DepartmentNames(models.TextChoices):
         ACCOUNTING = 'ACC', 'Accounting'
         ART = 'ART', 'Art'
@@ -78,7 +77,6 @@ class TuitionLocation(models.IntegerChoices):
 
 
 class Tutor(models.Model):
-
     pay = models.FloatField()
     subject = models.ManyToManyField(Subject)
     credentials = models.TextField(max_length=50, blank=True)
@@ -94,17 +92,14 @@ class Tutor(models.Model):
         self.subject = self.subject.get_subject_name()
         super().save(*args, **kwargs)
 
-
     def get_subjects(self):
         return ",".join([str(p) for p in self.subject.all()])
-
 
     def __str__(self):
         return self.user.display_name + " - " + self.get_subjects()
 
 
 class Student(models.Model):
-
     class YearInSchool(models.IntegerChoices):
         FRESHMAN = 1, 'Freshman'
         SOPHOMORE = 2, 'Sophomore'
@@ -127,4 +122,3 @@ class Student(models.Model):
 
     def __str__(self):
         return self.user.display_name + " - Studying " + self.major.name
-
