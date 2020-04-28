@@ -32,7 +32,7 @@ class TutorSerializer(serializers.ModelSerializer):
         model = Tutor
         fields = ['pay', 'subject', 'credentials', 'method',
                   'location', 'description', 'schedule',
-                  'rating', 'num_of_ratings', 'user','email']
+                  'rating', 'num_of_ratings', 'user', 'email']
 
         subject = GenericRelatedField({
             Subject: SubjectSerializer(),
@@ -44,12 +44,14 @@ class TutorSerializer(serializers.ModelSerializer):
 
 
 class StudentSerializer(serializers.ModelSerializer):
+    email = serializers.CharField(source='user.email', read_only=True, allow_null=True)
+
     subject = SubjectSerializer(many=True, read_only=True)
 
     class Meta:
         model = Student
         fields = ['major', 'pay', 'standing', 'method', 'subject',
-                  'location', 'description', 'schedule', 'user']
+                  'location', 'description', 'schedule', 'user', 'email']
 
         subject = GenericRelatedField({
             Subject: SubjectSerializer(),
