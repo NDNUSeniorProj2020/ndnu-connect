@@ -27,7 +27,6 @@ class LoginSerializer(serializers.Serializer):
 
         return {
             'email': user.email,
-            'display_name': user.display_name,
             'first_name': user.first_name,
             'last_name': user.last_name,
             'phone_number': user.phone_number,
@@ -41,7 +40,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email', 'display_name', 'first_name', 'last_name', 'phone_number', 'password', 'token')
+        fields = ('email', 'first_name', 'last_name', 'phone_number', 'password', 'token')
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
@@ -56,7 +55,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email', 'display_name', 'first_name', 'last_name', 'phone_number', 'password', 'token',)
+        fields = ('id', 'email', 'first_name', 'last_name', 'phone_number', 'password', 'token',)
         read_only_fields = ('token',)
 
     # Update user
@@ -71,6 +70,12 @@ class UserSerializer(serializers.ModelSerializer):
 
         instance.save()
         return instance
+
+
+class AlumniSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('email', 'first_name', 'last_name', 'graduated', 'year_graduated', 'major', 'company', 'job_title', 'about',)
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):
@@ -98,4 +103,4 @@ class UserSerializerWithToken(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email', 'display_name', 'first_name', 'last_name', 'phone_number', 'token')
+        fields = ('email', 'first_name', 'last_name', 'phone_number', 'token')

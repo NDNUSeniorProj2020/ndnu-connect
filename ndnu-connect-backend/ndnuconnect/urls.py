@@ -21,6 +21,7 @@ from rest_framework import routers
 from tutor_match import views as tutorviews
 from job_find import views as jobviews
 from boards import views as boardviews
+from accounts import views as accountviews
 
 router = routers.DefaultRouter()
 router.register(r'department', tutorviews.DepartmentViewSet)
@@ -30,6 +31,8 @@ router.register(r'tutor', tutorviews.TutorViewSet)
 router.register(r'student', tutorviews.StudentViewSet)
 
 router.register(r'job', jobviews.JobViewSet)
+
+router.register(r'alumni', accountviews.AlumniViewSet)
 
 router.register(r'board', boardviews.BoardViewSet)
 router.register(r'topic', boardviews.TopicViewSet)
@@ -45,5 +48,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     
     path('api/', include(router.urls)),
+    path('api/job/<int:pk>/update/',jobviews.JobUpdateView.as_view()),
+    path('api/job/<int:pk>/retrieve/',jobviews.JobRetrieveView.as_view(),name= "job_details"),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

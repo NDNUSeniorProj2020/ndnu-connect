@@ -27,11 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['ndnuconnect.us.sysb.ai',
                  '127.0.0.1',
-                 'localhost']
+                 'localhost',
+                 'ec2-54-241-187-187.us-west-1.compute.amazonaws.com']
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -95,7 +95,6 @@ WSGI_APPLICATION = 'ndnuconnect.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -125,7 +124,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'America/Los_Angeles'
@@ -139,8 +137,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'ndnuconnect', 'static'))
 STATIC_URL = '/static/'
+
 
 # Rest Framework
 REST_FRAMEWORK = {

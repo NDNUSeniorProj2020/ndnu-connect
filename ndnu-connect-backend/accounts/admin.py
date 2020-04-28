@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from .forms import AddUserForm, UpdateUserForm
-from .models import Person, User
+from .models import User
 
 
 class UserAdmin(BaseUserAdmin):
@@ -12,19 +12,21 @@ class UserAdmin(BaseUserAdmin):
     model = User
 
     # Setup admin view table
-    search_fields = ('email', 'display_name', 'first_name',
-                     'last_name', 'display_name', 'phone_number',)
+    search_fields = ('email', 'first_name',
+                     'last_name', 'phone_number',)
     list_filter = ('is_staff', 'is_active',)
     ordering = ('email',)
-    list_display = ('email', 'display_name', 'first_name', 'last_name',
-                    'display_name', 'phone_number', 'is_active', 'is_staff',)
+    list_display = ('email', 'first_name', 'last_name',
+                    'phone_number', 'is_active', 'is_staff',)
 
     # Specify field sets
     fieldsets = (
         (None, {
-            'fields': ('email', 'password', 'display_name',)}),
-        ('Personal info', {
+            'fields': ('email', 'password')}),
+        ('Personal Information', {
             'fields': ('first_name', 'last_name', 'phone_number',)}),
+        ('Alumni Information', {
+            'fields': ('graduated', 'year_graduated', 'major', 'company', 'job_title', 'about',)}),
         ('Permissions', {
             'fields': ('is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions',)})
     )
@@ -34,7 +36,7 @@ class UserAdmin(BaseUserAdmin):
             {
                 'classes': ('wide',),
                 'fields': (
-                    'email', 'display_name', 'first_name', 'last_name', 'phone_number', 'password1',
+                    'email', 'first_name', 'last_name', 'phone_number', 'password1',
                     'password2'
                 )
             }
@@ -42,12 +44,4 @@ class UserAdmin(BaseUserAdmin):
     )
 
 
-class PersonAdmin(admin.ModelAdmin):
-    fieldsets = (
-        (None, {
-            'fields': ('graduated', 'major', 'company', 'job_title', 'about', 'user')}),
-    )
-
-
 admin.site.register(User, UserAdmin)
-admin.site.register(Person, PersonAdmin)

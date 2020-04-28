@@ -121,4 +121,4 @@ class Student(models.Model):
         return ",".join([str(p) for p in self.subject.all()])
 
     def __str__(self):
-        return self.user.display_name + " - Studying " + self.major.name
+        return self.user.email + " - Studying " + self.major.name
