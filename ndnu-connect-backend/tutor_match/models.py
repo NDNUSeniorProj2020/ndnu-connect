@@ -88,15 +88,15 @@ class Tutor(models.Model):
     num_of_ratings = models.FloatField(default=0)
     user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)
 
-    def save(self, *args, **kwargs):
-        self.subject = self.subject.get_subject_name()
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     self.subject = self.subject.get_subject_name()
+    #     super().save(*args, **kwargs)
 
     def get_subjects(self):
         return ",".join([str(p) for p in self.subject.all()])
 
     def __str__(self):
-        return self.user.display_name + " - " + self.get_subjects()
+        return self.user.first_name + " " + self.user.last_name + " - " + self.get_subjects()
 
 
 class Student(models.Model):
