@@ -33,7 +33,9 @@ class TutorSerializer(serializers.ModelSerializer):
 
 
 class StudentSerializer(serializers.ModelSerializer):
+    email = serializers.CharField(source='user.email', read_only=True, allow_null=True)
+
     class Meta:
         model = Student
         fields = ['major', 'pay', 'standing', 'method',
-                  'location', 'description', 'schedule', 'user']
+                  'location', 'description', 'schedule', 'user', 'email']
