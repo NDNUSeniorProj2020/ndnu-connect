@@ -2,7 +2,6 @@ from django.db import models
 
 
 class Department(models.Model):
-
     class DepartmentNames(models.TextChoices):
         ACCOUNTING = 'ACC', 'Accounting'
         ART = 'ART', 'Art'
@@ -40,6 +39,9 @@ class Subject(models.Model):
     semester = models.TextField(max_length=10, blank=True)
     course_number = models.TextField(max_length=10, blank=True)
 
+    def get_subject_name(self):
+        return self.subject
+
     def __str__(self):
         return self.subject
 
@@ -75,9 +77,8 @@ class TuitionLocation(models.IntegerChoices):
 
 
 class Tutor(models.Model):
-
     pay = models.FloatField()
-    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, null=True)
+    subject = models.ManyToManyField(Subject)
     credentials = models.TextField(max_length=50, blank=True)
     method = models.IntegerField(choices=TuitionMethod.choices, null=True)
     location = models.IntegerField(choices=TuitionLocation.choices, null=True)
@@ -87,12 +88,18 @@ class Tutor(models.Model):
     num_of_ratings = models.FloatField(default=0)
     user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)
 
+    # def save(self, *args, **kwargs):
+    #     self.subject = self.subject.get_subject_name()
+    #     super().save(*args, **kwargs)
+
+    def get_subjects(self):
+        return ",".join([str(p) for p in self.subject.all()])
+
     def __str__(self):
-        return self.user.email + " - " + self.subject.subject
+        return self.user.first_name + " " + self.user.last_name + " - " + self.get_subjects()
 
 
 class Student(models.Model):
-
     class YearInSchool(models.IntegerChoices):
         FRESHMAN = 1, 'Freshman'
         SOPHOMORE = 2, 'Sophomore'
@@ -102,12 +109,16 @@ class Student(models.Model):
 
     major = models.ForeignKey(Department, on_delete=models.CASCADE)
     pay = models.FloatField()
+    subject = models.ManyToManyField(Subject)
     standing = models.IntegerField(choices=YearInSchool.choices, null=True)
     method = models.IntegerField(choices=TuitionMethod.choices, null=True)
     location = models.IntegerField(choices=TuitionLocation.choices, null=True)
     description = models.TextField(max_length=30, blank=True)
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)
+
+    def get_subjects(self):
+        return ",".join([str(p) for p in self.subject.all()])
 
     def __str__(self):
         return self.user.email + " - Studying " + self.major.name
