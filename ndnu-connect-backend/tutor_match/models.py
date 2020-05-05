@@ -35,7 +35,7 @@ class Department(models.Model):
 
 
 class Subject(models.Model):
-    subject = models.TextField(max_length=20, blank=True)
+    subject = models.TextField(max_length=50, blank=True)
     semester = models.TextField(max_length=10, blank=True)
     course_number = models.TextField(max_length=10, blank=True)
 
@@ -79,18 +79,14 @@ class TuitionLocation(models.IntegerChoices):
 class Tutor(models.Model):
     pay = models.FloatField()
     subject = models.ManyToManyField(Subject)
-    credentials = models.TextField(max_length=50, blank=True)
+    credentials = models.TextField(blank=True)
     method = models.IntegerField(choices=TuitionMethod.choices, null=True)
     location = models.IntegerField(choices=TuitionLocation.choices, null=True)
-    description = models.TextField(max_length=30, blank=True)
+    description = models.TextField(blank=True)
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, null=True)
     rating = models.FloatField(null=True)
     num_of_ratings = models.FloatField(default=0)
     user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)
-
-    # def save(self, *args, **kwargs):
-    #     self.subject = self.subject.get_subject_name()
-    #     super().save(*args, **kwargs)
 
     def get_subjects(self):
         return ",".join([str(p) for p in self.subject.all()])
@@ -113,7 +109,7 @@ class Student(models.Model):
     standing = models.IntegerField(choices=YearInSchool.choices, null=True)
     method = models.IntegerField(choices=TuitionMethod.choices, null=True)
     location = models.IntegerField(choices=TuitionLocation.choices, null=True)
-    description = models.TextField(max_length=30, blank=True)
+    description = models.TextField(blank=True)
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)
 

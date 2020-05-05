@@ -12,14 +12,14 @@ from .managers import UserManager
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True)
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=20)
     graduated = models.BooleanField(default=False)
     year_graduated = models.IntegerField(null=True, blank=True)
-    major = models.CharField(max_length=20, null=True, blank=True)
-    company = models.CharField(max_length=20, null=True, blank=True)
-    job_title = models.CharField(max_length=20, null=True, blank=True)
+    major = models.CharField(max_length=100, null=True, blank=True)
+    company = models.CharField(max_length=100, null=True, blank=True)
+    job_title = models.CharField(max_length=100, null=True, blank=True)
     about = models.TextField(null=True, blank=True)
     is_active = models.BooleanField(_('active'), default=True)
     is_staff = models.BooleanField(_('staff status'), default=False)
@@ -42,6 +42,16 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.first_name
+
+    # Update 'graduated' field based on the 'year_graduated'
+    def save(self, *args, **kwargs):
+        if self.year_graduated == None:
+            pass
+        else:
+            if self.year_graduated <= datetime.now().year and datetime.now().month >= 5:
+                self.graduated = True
+
+        super().save(*args, **kwargs)
 
     @property
     def token(self):
