@@ -55,8 +55,9 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'first_name', 'last_name', 'phone_number', 'password', 'token',)
-        read_only_fields = ('token',)
+        fields = ('id', 'email', 'first_name', 'last_name', 'phone_number', 'password', 'token',
+                  'graduated', 'year_graduated', 'major', 'company', 'job_title', 'about')
+        read_only_fields = ('token', 'graduated')
 
     # Update user
     def update(self, instance, validated_data):
@@ -75,7 +76,8 @@ class UserSerializer(serializers.ModelSerializer):
 class AlumniSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('email', 'first_name', 'last_name', 'graduated', 'year_graduated', 'major', 'company', 'job_title', 'about',)
+        fields = ('email', 'first_name', 'last_name', 'graduated',
+                  'year_graduated', 'major', 'company', 'job_title', 'about',)
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):
