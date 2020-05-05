@@ -29,7 +29,11 @@ This application, as the name implies, is an open forum for users to share.
 * [ ] As someone with numerous posts, I want to be able to easily search through posts so that I can quickly read and respond to comments.
 
 ## Backend
-This repository contains the backend for the project. The following technologies were used:
+This repository contains the backend for the project.
+### Models
+<img src="https://github.com/NDNUSeniorProj2020/ndnu-connect/blob/master/ndnu-connect-backend/ndnuconnect/static/images/DB%20Schema.png" width=400>
+
+### Technologies Used
 - Django
   - We chose Django for this project as the use of Python is growing and we are seeing more and more Django web applications, so this project would give us hands-on experience with current technologies.
 - SQLite3
