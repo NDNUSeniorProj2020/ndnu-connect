@@ -30,22 +30,43 @@ This application, as the name implies, is an open forum for users to share.
 
 ## Backend
 This repository contains the backend for the project.
-### Models
-<img src="https://github.com/NDNUSeniorProj2020/ndnu-connect/blob/master/ndnu-connect-backend/ndnuconnect/static/images/DB%20Schema.png" width=400>
 
 ### Technologies Used
 - Django
-  - We chose Django for this project as the use of Python is growing and we are seeing more and more Django web applications, so this project would give us hands-on experience with current technologies.
+  - We chose Django for this project as the use of Python is growing and we are seeing more and more Django web applications, so this project would give us hands on experience with current technologies.
 - SQLite3
   - We kept the default Django database for this project for simplicity.
 - Amazon Web Services (AWS)
-  - We used AWS to deploy the backend, as AWS is one of, if not, the most commonly used cloud service provider. It is another good experience for us.
-  - Elastic Compute Cloud Instance, Windows Server 2019
-    - While Windows isn't the front runner for deploying Django web applications, it was a good experience working with it and figuring out how everything is done this way.
+  - We used AWS to deploy the back end as AWS is one of if not the most commonly used cloud service provider. It is another good experience for us.
+  - Elastic Compute Cloud Instance (EC2)
+    - Server to host the Django web application
   - Route 53
-    - A domain name was required to certify the backend sever, allowing communications with the frontend.
+    - A domain name was required to certify the back end sever, allowing communications with the front end.
   - Load Balancer
     - The load balancing aspect of this Amazon application was not used, however it was required to obtain a free SSL certification from AWS.
+- Windows Server 2019
+  - While Windows isn't the front runner for deploying Django web applications, it was a good experience working with it and figuring out how everything is done this way.
+  - Internet Information Services (IIS)
+    - Chose IIS over Apache as IIS is faster than an Apache on Windows setup.
+  - WFastCGI
+    - The python package that allows Django to be deployed on IIS.
+
+### Models
+<img src="https://github.com/NDNUSeniorProj2020/ndnu-connect/blob/master/ndnu-connect-backend/ndnuconnect/static/images/DB%20Schema.png" width=750>
+
+### Networking
+|Model|RESTful API|
+| ------------- | -------- |
+|Alumni|https://praveenv.org/api/alumni/ |
+|Board|https://praveenv.org/api/board/ |
+|Department|https://praveenv.org/api/department/ |
+|Job|https://praveenv.org/api/job/ |
+|Post|https://praveenv.org/api/post/ |
+|Schedule|https://praveenv.org/api/schedule/ |
+|Student|https://praveenv.org/api/student/ |
+|Subject|https://praveenv.org/api/subject/ |
+|Topic|https://praveenv.org/api/topic/ |
+|Tutor|https://praveenv.org/api/tutor/ |
 
 ## Setup
 To get started with this project, you'll need to start in the `ndnu-connect`
