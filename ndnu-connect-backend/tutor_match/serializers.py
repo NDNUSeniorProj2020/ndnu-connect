@@ -26,7 +26,7 @@ class ScheduleSerializer(serializers.ModelSerializer):
 class TutorSerializer(serializers.ModelSerializer):
     email = serializers.CharField(source='user.email', read_only=True, allow_null=True)
 
-    subject = SubjectSerializer(many=True, read_only=True)
+    subject = SubjectSerializer(many=True)
 
     class Meta:
         model = Tutor
@@ -46,7 +46,7 @@ class TutorSerializer(serializers.ModelSerializer):
 class StudentSerializer(serializers.ModelSerializer):
     email = serializers.CharField(source='user.email', read_only=True, allow_null=True)
 
-    subject = SubjectSerializer(many=True, read_only=True)
+    subject = SubjectSerializer(many=True)
 
     class Meta:
         model = Student
