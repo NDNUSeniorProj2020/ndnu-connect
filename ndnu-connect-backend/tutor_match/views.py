@@ -28,7 +28,6 @@ class TutorViewSet(viewsets.ModelViewSet):
     queryset = Tutor.objects.all()
     serializer_class = TutorSerializer
 
-
 class TutorUpdateView(UpdateAPIView):
     queryset = Tutor.objects.all()
     serializer_class = TutorSerializer

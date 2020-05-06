@@ -24,12 +24,17 @@ class ScheduleSerializer(serializers.ModelSerializer):
 
 
 class TutorSerializer(serializers.ModelSerializer):
+    def __init__(self, *args, **kwargs):
+        subject = kwargs.pop('subject', True)
+        super(TutorSerializer, self).__init__(many=subject, *args, **kwargs)
+
     email = serializers.CharField(source='user.email', read_only=True, allow_null=True)
 
-    subject = SubjectSerializer(many=True)
+    subject = SubjectSerializer(many=True, read_only=True)
 
-    def create(self, validated_data):
-        return Tutor.objects.create(**validated_data)
+    # def create(self, validated_data):
+    #     instance = Tutor.objects.create(**validated_data)
+    #     return instance
 
     class Meta:
         model = Tutor
@@ -50,9 +55,6 @@ class StudentSerializer(serializers.ModelSerializer):
     email = serializers.CharField(source='user.email', read_only=True, allow_null=True)
 
     subject = SubjectSerializer(many=True)
-
-    def create(self, validated_data):
-        return Student.objects.create(**validated_data)
 
     class Meta:
         model = Student
