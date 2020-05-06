@@ -32,11 +32,11 @@ This application, as the name implies, is an open forum for users to share.
 This repository contains the backend for the project.
 
 ### Technologies Used
-- Django
+- <img src="https://github.com/NDNUSeniorProj2020/ndnu-connect/blob/master/ndnu-connect-backend/ndnuconnect/static/images/PythonDjango.png" width=25> **Django**
   - We chose Django for this project as the use of Python is growing and we are seeing more and more Django web applications, so this project would give us hands on experience with current technologies.
-- SQLite3
+- <img src="https://github.com/NDNUSeniorProj2020/ndnu-connect/blob/master/ndnu-connect-backend/ndnuconnect/static/images/SQLite.png" width=25> **SQLite3**
   - We kept the default Django database for this project for simplicity.
-- Amazon Web Services (AWS)
+- <img src="https://github.com/NDNUSeniorProj2020/ndnu-connect/blob/master/ndnu-connect-backend/ndnuconnect/static/images/AWS.png" width=25> **Amazon Web Services (AWS)**
   - We used AWS to deploy the back end as AWS is one of if not the most commonly used cloud service provider. It is another good experience for us.
   - Elastic Compute Cloud Instance (EC2)
     - Server to host the Django web application
@@ -44,7 +44,7 @@ This repository contains the backend for the project.
     - A domain name was required to certify the back end sever, allowing communications with the front end.
   - Load Balancer
     - The load balancing aspect of this Amazon application was not used, however it was required to obtain a free SSL certification from AWS.
-- Windows Server 2019
+- <img src="https://github.com/NDNUSeniorProj2020/ndnu-connect/blob/master/ndnu-connect-backend/ndnuconnect/static/images/WindowsServer.png" width=25> **Windows Server 2019**
   - While Windows isn't the front runner for deploying Django web applications, it was a good experience working with it and figuring out how everything is done this way.
   - Internet Information Services (IIS)
     - Chose IIS over Apache as IIS is faster than an Apache on Windows setup.
@@ -112,11 +112,9 @@ directory in the `Terminal`, then go ahead and run the following commands:
 `$ python manage.py runserver`
 
 ### Contributors:
-* Mark Falcone
-* Matt Danielle
-* Jonathon Chenvert
-* Praveen Vandeyar
-* Leo Samuelson
-* Jose Alvarez Avina
-* Ervin Elias
-* Raul Flores
+* [Mark Falcone](https://github.com/markFalcone)
+* [Matt Danielle](https://github.com/digitaluniverse)
+* [Jonathon Chenvert](https://github.com/XZ7QN0)
+* [Praveen Vandeyar](https://github.com/pv-gitjob)
+* [Jose Alvarez Avina](https://github.com/jalvarez302)
+* [Raul Flores](https://github.com/raulf21)
