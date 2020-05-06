@@ -1,8 +1,9 @@
-# <img src="https://github.com/NDNUSeniorProj2020/ndnu-connect-client/blob/master/public/NDNU-Avatar-200x200.png" width=25> NDNU Connect
+<img src="https://github.com/NDNUSeniorProj2020/ndnu-connect/blob/master/ndnu-connect-backend/ndnuconnect/static/images/NDNU.png" width=750><br>
+# NDNU Connect
 NDNU Connect is a React-Django web application that allows past and present students of Notre Dame de Namur University (NDNU) to connect and help each other in their academic journeys and present career opportunities. These are achieved through the **Tutor**, **Job | Internship**, **Open Forum**, and **Alumni** applications.
 ### Why we made NDNU Connect
 We made this app to help NDNU students connect with one another and serve as a medium for them to help each other through. We wanted to go beyond just serving current students because those of us working on this are soon-to-be alumni. By including an alumni aspect and a job page, the resources are open to all users so that users can connect with professionals who have graduated from NDNU.
-## Applications
+## <img src="https://github.com/NDNUSeniorProj2020/ndnu-connect-client/blob/master/public/NDNU-Avatar-200x200.png" width=25> Applications
 ### Tutor
 This application will match students and tutors with one another. Students and tutors will be able to create and view profiles that will display their schedules, subjects, locations, and prices. Students will also be able to rate their experience with tutor. Students and tutors will be able to find suitable tutors/students by searching for the ideal arrangement and being able to contact each other through their email addresses on their profiles.
 
