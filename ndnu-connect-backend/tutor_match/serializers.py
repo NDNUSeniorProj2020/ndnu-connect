@@ -28,6 +28,9 @@ class TutorSerializer(serializers.ModelSerializer):
 
     subject = SubjectSerializer(many=True)
 
+    def create(self, validated_data):
+        return Tutor.objects.create(**validated_data)
+
     class Meta:
         model = Tutor
         fields = ['pay', 'subject', 'credentials', 'method',
@@ -47,6 +50,9 @@ class StudentSerializer(serializers.ModelSerializer):
     email = serializers.CharField(source='user.email', read_only=True, allow_null=True)
 
     subject = SubjectSerializer(many=True)
+
+    def create(self, validated_data):
+        return Student.objects.create(**validated_data)
 
     class Meta:
         model = Student
