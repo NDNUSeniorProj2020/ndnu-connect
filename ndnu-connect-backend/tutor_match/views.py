@@ -3,7 +3,6 @@ from rest_framework import viewsets
 from .models import Department, Subject, Schedule, Tutor, Student
 from .serializers import DepartmentSerializer, SubjectSerializer, ScheduleSerializer, \
     TutorSerializer, StudentSerializer
-from rest_framework import generics
 
 
 class DepartmentViewSet(viewsets.ModelViewSet):
