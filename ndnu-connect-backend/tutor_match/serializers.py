@@ -25,8 +25,8 @@ class ScheduleSerializer(serializers.ModelSerializer):
 
 class TutorSerializer(serializers.ModelSerializer):
     email = serializers.CharField(source='user.email', read_only=True, allow_null=True)
-
     subject = SubjectSerializer(many=True, read_only=True)
+    schedule = ScheduleSerializer()
 
     class Meta:
         model = Tutor
@@ -37,6 +37,11 @@ class TutorSerializer(serializers.ModelSerializer):
         subject = GenericRelatedField({
             Subject: SubjectSerializer(),
         })
+
+        class Meta:
+            model = Schedule
+            fields = ['monday', 'tuesday', 'wednesday',
+                      'thursday', 'friday', 'saturday', 'sunday']
 
         class Meta:
             model = Subject
