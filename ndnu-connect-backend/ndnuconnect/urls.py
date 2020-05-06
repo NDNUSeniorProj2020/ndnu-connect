@@ -50,5 +50,9 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/job/<int:pk>/update/', jobviews.JobUpdateView.as_view()),
     path('api/job/<int:pk>/retrieve/', jobviews.JobRetrieveView.as_view(), name="job_details"),
+    path('api/tutor/<int:pk>/update/', tutorviews.TutorUpdateView.as_view()),
+    path('api/tutor/<int:pk>/retrieve/', tutorviews.TutorRetrieveView.as_view(), name='tutor_details'),
+    path('api/student/<int:pk>/update/', tutorviews.StudentUpdateView.as_view()),
+    path('api/student/<int:pk>/retrieve/', tutorviews.StudentRetrieveView.as_view(), name='student_details'),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
