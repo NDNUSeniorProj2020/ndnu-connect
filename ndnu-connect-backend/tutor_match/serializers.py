@@ -1,4 +1,5 @@
-from rest_framework import serializers
+from rest_framework import serializers, status
+from rest_framework.response import Response
 
 from .models import Department, Subject, Schedule, Tutor, Student
 from generic_relations.relations import GenericRelatedField
@@ -34,20 +35,33 @@ class SubjectPrimaryKeyRelatedField(serializers.RelatedField):
 
 
 class TutorSerializer(serializers.ModelSerializer):
-    def __init__(self, *args, **kwargs):
-        subject = kwargs.pop('subject', True)
-        super(TutorSerializer, self).__init__(many=subject, *args, **kwargs)
+    # def __init__(self, *args, **kwargs):
+    #     subject = kwargs.pop('subject', True)
+    #     super(TutorSerializer, self).__init__(many=subject, *args, **kwargs)
 
     email = serializers.CharField(source='user.email', read_only=True, allow_null=True)
 
     #  works to associate existing subject models to tutor, but cant view subjects as subjects as string
-    subject = SubjectPrimaryKeyRelatedField(many=True, queryset=Subject.objects.all())
+    # subject = SubjectPrimaryKeyRelatedField(many=True, queryset=Subject.objects.all())
     #subject = serializers.PrimaryKeyRelatedField(many=True, queryset=Subject.objects.all(), default=SubjectSerializer())
-    #subject = SubjectSerializer(many=True, read_only=True)
+    subject = SubjectSerializer(many=True)
 
-    # def create(self, validated_data):
-    #     instance = Tutor.objects.create(**validated_data)
-    #     return instance
+    def create(self, validated_data):
+        subject = validated_data.pop('subject')
+
+        serializer = self.get_serializer(data=validated_data.pop('subject'))
+        serializer.is_valid(raise_exception=True)
+        serializer.save(subject=subject)
+        headers = self.get_success_headers(serializer.data)
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        # subject_data = validated_data.pop('subject')
+        # tutor = Tutor.objects.create(**validated_data)
+        #
+        # for subject in subject_data:
+        #     Subject.objects.create(subject=subject, **subject)
+        #
+        # return tutor
 
     class Meta:
         model = Tutor

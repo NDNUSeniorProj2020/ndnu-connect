@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
-from rest_framework.generics import UpdateAPIView, RetrieveAPIView
+from rest_framework.generics import RetrieveAPIView, UpdateAPIView, RetrieveUpdateAPIView
 from rest_framework.response import Response
 
 from .models import Department, Subject, Schedule, Tutor, Student
@@ -28,9 +28,15 @@ class TutorViewSet(viewsets.ModelViewSet):
     queryset = Tutor.objects.all()
     serializer_class = TutorSerializer
 
+
 class TutorUpdateView(UpdateAPIView):
     queryset = Tutor.objects.all()
     serializer_class = TutorSerializer
+
+    def list(self, request):
+        queryset = self.get_queryset()
+        serializer = TutorSerializer(queryset, many=True)
+        return Response(serializer.data)
 
 
 class TutorRetrieveView(RetrieveAPIView):
