@@ -23,6 +23,16 @@ class ScheduleSerializer(serializers.ModelSerializer):
                   'thursday', 'friday', 'saturday', 'sunday']
 
 
+class SubjectPrimaryKeyRelatedField(serializers.RelatedField):
+
+    def to_representation(self, value):
+        return value.subject
+
+    def to_internal_value(self, data):
+        subject_id = data['id']
+        return Subject.objects.get(id=subject_id)
+
+
 class TutorSerializer(serializers.ModelSerializer):
     def __init__(self, *args, **kwargs):
         subject = kwargs.pop('subject', True)
@@ -30,7 +40,10 @@ class TutorSerializer(serializers.ModelSerializer):
 
     email = serializers.CharField(source='user.email', read_only=True, allow_null=True)
 
-    subject = SubjectSerializer(many=True, read_only=True)
+    #  works to associate existing subject models to tutor, but cant view subjects as subjects as string
+    subject = SubjectPrimaryKeyRelatedField(many=True, queryset=Subject.objects.all())
+    #subject = serializers.PrimaryKeyRelatedField(many=True, queryset=Subject.objects.all(), default=SubjectSerializer())
+    #subject = SubjectSerializer(many=True, read_only=True)
 
     # def create(self, validated_data):
     #     instance = Tutor.objects.create(**validated_data)
