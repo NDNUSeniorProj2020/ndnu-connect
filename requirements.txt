@@ -10,7 +10,7 @@ djangorestframework-jwt==1.11.0
 future==0.18.2
 pip==20.0.2
 pycparser==2.19
-PyJWT==1.7.1
+PyJWT==2.4.0
 pytz==2019.3
 rest-framework-generic-relations==2.0.0
 setuptools==41.2.0
