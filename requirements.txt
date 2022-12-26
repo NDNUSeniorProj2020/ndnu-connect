@@ -17,4 +17,4 @@ setuptools==41.2.0
 six==1.14.0
 sqlparse==0.3.0
 wfastcgi==3.0.0
-wheel==0.34.2
+wheel==0.38.1
