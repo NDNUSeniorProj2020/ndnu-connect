@@ -13,7 +13,7 @@ pycparser==2.19
 PyJWT==1.7.1
 pytz==2019.3
 rest-framework-generic-relations==2.0.0
-setuptools==41.2.0
+setuptools==65.5.1
 six==1.14.0
 sqlparse==0.3.0
 wfastcgi==3.0.0
